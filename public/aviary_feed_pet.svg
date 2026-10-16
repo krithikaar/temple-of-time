@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Sky & Temple Backlight Gradient -->
+    <linearGradient id="aviarySkyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141a29" />
+      <stop offset="40%" stop-color="#1e293b" />
+      <stop offset="75%" stop-color="#2d3748" />
+      <stop offset="100%" stop-color="#18202f" />
+    </linearGradient>
+
+    <!-- Golden Sunlight Rays -->
+    <linearGradient id="sunbeamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#f59e0b" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Warm Amber Glow -->
+    <radialGradient id="sacredGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.9" />
+      <stop offset="25%" stop-color="#fbbf24" stop-opacity="0.5" />
+      <stop offset="60%" stop-color="#d97706" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Stone Archway Gradient -->
+    <linearGradient id="stoneArch" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="50%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Ancient Wood Roost Perch -->
+    <linearGradient id="woodPerch" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="50%" stop-color="#92400e" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Golden Feather Gradient -->
+    <linearGradient id="featherGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <!-- Wing Cyan Tip Gradient -->
+    <linearGradient id="wingCyan" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9" />
+      <stop offset="60%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+
+    <!-- Grain Seed Glow -->
+    <radialGradient id="grainSeed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="40%" stop-color="#fcd34d" />
+      <stop offset="80%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#b45309" stop-opacity="0.6" />
+    </radialGradient>
+  </defs>
+
+  <!-- Deep Temple Sanctuary Background -->
+  <rect width="1920" height="1080" fill="url(#aviarySkyGrad)" />
+
+  <!-- Cathedral High Arched Windows -->
+  <g opacity="0.6">
+    <path d="M 400 0 L 400 650 Q 400 450 550 450 Q 700 450 700 650 L 700 0 Z" fill="#1e293b" opacity="0.4" />
+    <path d="M 750 0 L 750 700 Q 750 400 960 400 Q 1170 400 1170 700 L 1170 0 Z" fill="#334155" opacity="0.5" />
+    <path d="M 1220 0 L 1220 650 Q 1220 450 1370 450 Q 1520 450 1520 650 L 1520 0 Z" fill="#1e293b" opacity="0.4" />
+  </g>
+
+  <!-- Sacred Light Sunbeams -->
+  <polygon points="960,350 400,1080 800,1080" fill="url(#sunbeamGrad)" opacity="0.75" />
+  <polygon points="960,350 700,1080 1250,1080" fill="url(#sunbeamGrad)" opacity="0.85" />
+  <polygon points="960,350 1100,1080 1650,1080" fill="url(#sunbeamGrad)" opacity="0.7" />
+
+  <!-- Ambient Light Center Halo -->
+  <circle cx="960" cy="520" r="450" fill="url(#sacredGlow)" />
+
+  <!-- Intricate Stone Arch Vault Frames -->
+  <path d="M 0 0 L 250 0 L 250 1080 L 0 1080 Z" fill="#0f172a" />
+  <path d="M 1670 0 L 1920 0 L 1920 1080 L 1670 1080 Z" fill="#0f172a" />
+  <path d="M 250 0 Q 960 200 1670 0 L 1670 120 Q 960 320 250 120 Z" fill="#1e293b" />
+
+  <!-- Perch Tree / Ancient Roost Branch -->
+  <g id="roost-perch">
+    <!-- Main Sweeping Branch -->
+    <path d="M 180 780 Q 550 720 960 740 Q 1350 760 1740 680 L 1740 760 Q 1350 840 960 810 Q 550 790 180 870 Z" fill="url(#woodPerch)" />
+    <!-- Branch Knots and Highlights -->
+    <path d="M 700 740 Q 960 730 1200 745 Q 960 760 700 750 Z" fill="#b45309" opacity="0.4" />
+    <path d="M 850 745 Q 960 740 1080 750 Q 960 755 850 750 Z" fill="#fef3c7" opacity="0.3" />
+  </g>
+
+  <!-- Mystical Avian Companion (Celestial Bird) on Roost -->
+  <g id="celestial-bird" transform="translate(960, 560)">
+    <!-- Aura of the Bird -->
+    <circle cx="0" cy="20" r="140" fill="#fef08a" opacity="0.25" />
+    <circle cx="0" cy="20" r="90" fill="#f59e0b" opacity="0.35" />
+
+    <!-- Tail Plumage -->
+    <path d="M -15 90 Q -40 170 -60 220 Q -20 180 0 110 Q 20 180 60 220 Q 40 170 15 90 Z" fill="url(#featherGold)" />
+    <path d="M -8 100 Q -20 180 -30 240 Q 0 190 8 100" fill="url(#wingCyan)" opacity="0.8" />
+    <path d="M 8 100 Q 20 180 30 240 Q 0 190 -8 100" fill="url(#wingCyan)" opacity="0.8" />
+
+    <!-- Bird Feet gripping the roost -->
+    <path d="M -22 100 L -30 115 M -18 100 L -18 118 M -12 100 L -6 115" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" />
+    <path d="M 12 100 L 6 115 M 18 100 L 18 118 M 22 100 L 30 115" stroke="#f59e0b" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Body & Torso -->
+    <ellipse cx="0" cy="40" rx="42" ry="60" fill="url(#featherGold)" />
+    <!-- Chest feathers highlight -->
+    <path d="M -25 20 Q 0 70 25 20 Q 0 85 -25 20 Z" fill="#fef9c3" opacity="0.9" />
+
+    <!-- Left Wing -->
+    <path d="M -35 15 Q -110 50 -120 110 Q -70 95 -35 70 Z" fill="url(#wingCyan)" />
+    <path d="M -30 20 Q -90 60 -95 105 Q -60 90 -30 65 Z" fill="url(#featherGold)" opacity="0.85" />
+
+    <!-- Right Wing -->
+    <path d="M 35 15 Q 110 50 120 110 Q 70 95 35 70 Z" fill="url(#wingCyan)" />
+    <path d="M 30 20 Q 90 60 95 105 Q 60 90 30 65 Z" fill="url(#featherGold)" opacity="0.85" />
+
+    <!-- Head & Crown -->
+    <circle cx="0" cy="-20" r="28" fill="url(#featherGold)" />
+    <!-- Crest / Crown Feathers -->
+    <path d="M -10 -40 Q -15 -75 0 -65 Q -5 -45 5 -42" fill="#38bdf8" />
+    <path d="M 0 -45 Q 0 -85 12 -70 Q 5 -50 10 -42" fill="#f59e0b" />
+    <path d="M 10 -40 Q 15 -75 22 -62 Q 12 -45 10 -42" fill="#facc15" />
+
+    <!-- Face details -->
+    <!-- Eyes -->
+    <circle cx="-12" cy="-22" r="6" fill="#0f172a" />
+    <circle cx="-10" cy="-24" r="2.5" fill="#ffffff" />
+    <circle cx="12" cy="-22" r="6" fill="#0f172a" />
+    <circle cx="14" cy="-24" r="2.5" fill="#ffffff" />
+
+    <!-- Golden Beak -->
+    <polygon points="-6,-14 6,-14 0,-2" fill="#f59e0b" stroke="#b45309" stroke-width="1.5" />
+    <!-- Sacred Forehead Gem -->
+    <polygon points="0,-34 -4,-28 0,-22 4,-28" fill="#38bdf8" />
+  </g>
+
+  <!-- Golden Grain Seeds Scattering & Floating in Atmospheric Light -->
+  <g id="grain-seeds">
+    <!-- Harvest Grains near the bird and perch -->
+    <ellipse cx="880" cy="720" rx="9" ry="5" transform="rotate(-25 880 720)" fill="url(#grainSeed)" />
+    <ellipse cx="910" cy="725" rx="8" ry="4.5" transform="rotate(15 910 725)" fill="url(#grainSeed)" />
+    <ellipse cx="940" cy="723" rx="10" ry="5.5" transform="rotate(-10 940 723)" fill="url(#grainSeed)" />
+    <ellipse cx="975" cy="727" rx="8.5" ry="5" transform="rotate(30 975 727)" fill="url(#grainSeed)" />
+    <ellipse cx="1010" cy="722" rx="9.5" ry="5" transform="rotate(-20 1010 722)" fill="url(#grainSeed)" />
+    <ellipse cx="1040" cy="726" rx="8" ry="4" transform="rotate(10 1040 726)" fill="url(#grainSeed)" />
+
+    <!-- Floating mystical grain sparks -->
+    <ellipse cx="820" cy="610" rx="7" ry="4" transform="rotate(45 820 610)" fill="url(#grainSeed)" />
+    <circle cx="820" cy="610" r="14" fill="#fef08a" opacity="0.3" />
+
+    <ellipse cx="1120" cy="590" rx="8" ry="4.5" transform="rotate(-35 1120 590)" fill="url(#grainSeed)" />
+    <circle cx="1120" cy="590" r="16" fill="#fef08a" opacity="0.3" />
+
+    <ellipse cx="760" cy="520" rx="6.5" ry="3.5" transform="rotate(20 760 520)" fill="url(#grainSeed)" />
+    <ellipse cx="1180" cy="510" rx="7" ry="4" transform="rotate(-15 1180 510)" fill="url(#grainSeed)" />
+
+    <ellipse cx="950" cy="420" rx="8" ry="4" transform="rotate(50 950 420)" fill="url(#grainSeed)" />
+    <circle cx="950" cy="420" r="18" fill="#fef08a" opacity="0.35" />
+  </g>
+
+  <!-- Glowing Starlight Motes -->
+  <g opacity="0.75">
+    <circle cx="580" cy="380" r="2.5" fill="#fef3c7" />
+    <circle cx="640" cy="480" r="3" fill="#fde68a" />
+    <circle cx="720" cy="340" r="2" fill="#ffffff" />
+    <circle cx="1250" cy="390" r="3" fill="#fde68a" />
+    <circle cx="1320" cy="460" r="2" fill="#ffffff" />
+    <circle cx="1400" cy="350" r="2.5" fill="#fef3c7" />
+    <circle cx="880" cy="310" r="3" fill="#fef08a" />
+    <circle cx="1060" cy="320" r="3.5" fill="#fef08a" />
+  </g>
+
+  <!-- Hanging Enchanted Ivy & Botanical Foliage on Archways -->
+  <g fill="#166534" opacity="0.8">
+    <path d="M 250 120 Q 300 180 270 240 Q 240 280 260 340 L 250 340 Z" />
+    <circle cx="280" cy="180" r="14" fill="#15803d" />
+    <circle cx="270" cy="220" r="16" fill="#16a34a" />
+    <circle cx="285" cy="270" r="13" fill="#15803d" />
+    <circle cx="265" cy="320" r="12" fill="#166534" />
+
+    <path d="M 1670 120 Q 1620 180 1650 240 Q 1680 280 1660 340 L 1670 340 Z" />
+    <circle cx="1640" cy="180" r="14" fill="#15803d" />
+    <circle cx="1650" cy="220" r="16" fill="#16a34a" />
+    <circle cx="1635" cy="270" r="13" fill="#15803d" />
+    <circle cx="1655" cy="320" r="12" fill="#166534" />
+  </g>
+</svg>

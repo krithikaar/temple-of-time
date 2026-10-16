@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #08090e;
+    color: #e2e8f0;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, .font-arcane {
+    font-family: var(--font-serif);
+    letter-spacing: 0.04em;
+  }
+
+  .font-mono-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom range slider styling for psychophysics continuous rating */
+input[type="range"].agency-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #1e2230;
+  border-radius: 4px;
+  outline: none;
+}
+
+input[type="range"].agency-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e2b35a;
+  border: 3px solid #08090e;
+  box-shadow: 0 0 12px rgba(226, 179, 90, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+input[type="range"].agency-slider::-webkit-slider-thumb:hover,
+input[type="range"].agency-slider::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+  background: #f5c46b;
+}
+
+input[type="range"].agency-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e2b35a;
+  border: 3px solid #08090e;
+  box-shadow: 0 0 12px rgba(226, 179, 90, 0.6);
+  cursor: pointer;
+}
+
+/* Arcane glow effects */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(226, 179, 90, 0.25);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+.border-arcane {
+  border-color: rgba(226, 179, 90, 0.18);
+}
+
+/* Hardware accelerated transitions */
+.hw-accel {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #08090e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2538;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3552;
+}
+
+/* Portrait orientation enforcement overlay for Room 4 */
+@media screen and (orientation: portrait) {
+  #landscape-enforce-overlay {
+    display: flex !important;
+  }
+}
+
+/* Master Application Footer Styling */
+#app-footer {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.035em;
+  color: rgba(168, 162, 158, 0.5); /* subtle muted grey */
+  text-align: center;
+  user-select: none;
+  transition: color 0.25s ease;
+}
+
+#app-footer:hover {
+  color: rgba(217, 119, 6, 0.75); /* muted warm gold tone on hover */
+}
+
+/* Ensure footer remains strictly hidden during active fullscreen task viewports */
+.task-arena-active #app-footer,
+.fullscreen-task-active #app-footer,
+[data-trial-active="true"] #app-footer,
+.trial-viewport #app-footer,
+.task-stage #app-footer {
+  display: none !important;
+}
+
+/* ==============================================================================
+   QUEST-PATH PROGRESSION MAP: AESTHETICS & ANIMATIONS
+   ============================================================================== */
+
+@keyframes activeNodePulse {
+  0% {
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4), 0 0 15px rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.8), 0 0 28px rgba(212, 175, 55, 0.45);
+    border-color: #D4AF37;
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.4), 0 0 15px rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.6);
+  }
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+@keyframes dashFlow {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Node States */
+.quest-node-completed {
+  border-color: rgba(212, 175, 55, 0.65) !important;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.15);
+  background-color: #0d1220 !important;
+}
+
+.quest-node-completed:hover {
+  border-color: #D4AF37 !important;
+  box-shadow: 0 0 22px rgba(212, 175, 55, 0.25);
+}
+
+.quest-node-active {
+  animation: activeNodePulse 2.4s infinite ease-in-out;
+  background-color: #0f1527 !important;
+  border-color: #D4AF37 !important;
+}
+
+.quest-node-locked {
+  filter: grayscale(1);
+  opacity: 0.35 !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  border-color: rgba(71, 85, 105, 0.3) !important;
+  background-color: #080a12 !important;
+}
+
+.quest-node-locked * {
+  pointer-events: none !important;
+}
+
+/* Questionnaire Node: Inscribed Tablet / Diamond Badge Aesthetic */
+.quest-tablet-badge {
+  background: linear-gradient(145deg, #101524 0%, #0a0e19 100%);
+  position: relative;
+}
+
+.quest-tablet-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Connecting Path Segment */
+.quest-path-active-anim {
+  animation: dashFlow 1.5s linear infinite;
+}
+
+
+

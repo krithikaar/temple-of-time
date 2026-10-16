@@ -1,0 +1,299 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Grand Library Background Dusk Lavender -->
+    <linearGradient id="librarySkyDusk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a3b63" />
+      <stop offset="40%" stop-color="#735d8e" />
+      <stop offset="70%" stop-color="#9d86b8" />
+      <stop offset="100%" stop-color="#d4c5e2" />
+    </linearGradient>
+
+    <!-- Warm Woodwork Bookshelves Gradient -->
+    <linearGradient id="woodShelf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c49a75" />
+      <stop offset="50%" stop-color="#aa815d" />
+      <stop offset="100%" stop-color="#805d3f" />
+    </linearGradient>
+
+    <!-- Dark Wood Book Shadow -->
+    <linearGradient id="woodShadow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5a422d" />
+      <stop offset="100%" stop-color="#3d2a1b" />
+    </linearGradient>
+
+    <!-- Lantern Amber Radial Glow -->
+    <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.95" />
+      <stop offset="25%" stop-color="#fef08a" stop-opacity="0.75" />
+      <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glowing Number Neon Gradients -->
+    <radialGradient id="numAuraYellow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="40%" stop-color="#fde047" />
+      <stop offset="75%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#ca8a04" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="numAuraGreen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0fdf4" />
+      <stop offset="40%" stop-color="#86efac" />
+      <stop offset="75%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#16a34a" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="numAuraPurple" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#faf5ff" />
+      <stop offset="40%" stop-color="#d8b4fe" />
+      <stop offset="75%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#9333ea" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Table Wood Desk Foreground -->
+    <linearGradient id="deskWood" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#baa088" />
+      <stop offset="50%" stop-color="#9c8068" />
+      <stop offset="100%" stop-color="#7a5f48" />
+    </linearGradient>
+  </defs>
+
+  <!-- High Gothic Vault Ceiling & Arched Windows -->
+  <rect width="1920" height="1080" fill="#2d2242" />
+
+  <!-- Cathedral Windows -->
+  <g>
+    <!-- Center Arched Window -->
+    <path d="M 880 280 L 880 60 Q 960 0 1040 60 L 1040 280 Z" fill="url(#librarySkyDusk)" />
+    <!-- Left Arched Window -->
+    <path d="M 600 280 L 600 80 Q 660 30 720 80 L 720 280 Z" fill="url(#librarySkyDusk)" />
+    <!-- Right Arched Window -->
+    <path d="M 1200 280 L 1200 80 Q 1260 30 1320 80 L 1320 280 Z" fill="url(#librarySkyDusk)" />
+
+    <!-- Gothic Window Tracery and Stone Mullions -->
+    <path d="M 960 20 L 960 280 M 880 140 Q 960 90 1040 140" stroke="#7e6997" stroke-width="6" fill="none" />
+    <path d="M 660 35 L 660 280 M 600 145 Q 660 105 720 145" stroke="#7e6997" stroke-width="5" fill="none" />
+    <path d="M 1260 35 L 1260 280 M 1200 145 Q 1260 105 1320 145" stroke="#7e6997" stroke-width="5" fill="none" />
+  </g>
+
+  <!-- Hanging Ornate Lanterns -->
+  <!-- Left Lantern -->
+  <g transform="translate(560, 110)">
+    <line x1="0" y1="-110" x2="0" y2="0" stroke="#47382d" stroke-width="3" />
+    <circle cx="0" cy="30" r="70" fill="url(#lanternGlow)" />
+    <polygon points="-16,0 16,0 22,45 -22,45" fill="#fef08a" stroke="#5a4433" stroke-width="4" />
+    <polygon points="-22,45 22,45 0,65" fill="#5a4433" />
+  </g>
+  <!-- Center Left Lantern -->
+  <g transform="translate(800, 140)">
+    <line x1="0" y1="-140" x2="0" y2="0" stroke="#47382d" stroke-width="3" />
+    <circle cx="0" cy="30" r="75" fill="url(#lanternGlow)" />
+    <polygon points="-16,0 16,0 22,45 -22,45" fill="#fef08a" stroke="#5a4433" stroke-width="4" />
+    <polygon points="-22,45 22,45 0,65" fill="#5a4433" />
+  </g>
+  <!-- Center Right Lantern -->
+  <g transform="translate(1120, 140)">
+    <line x1="0" y1="-140" x2="0" y2="0" stroke="#47382d" stroke-width="3" />
+    <circle cx="0" cy="30" r="75" fill="url(#lanternGlow)" />
+    <polygon points="-16,0 16,0 22,45 -22,45" fill="#5a4433" stroke="#5a4433" stroke-width="4" />
+    <polygon points="-16,0 16,0 22,45 -22,45" fill="#fef08a" stroke="#5a4433" stroke-width="4" />
+    <polygon points="-22,45 22,45 0,65" fill="#5a4433" />
+  </g>
+  <!-- Right Lantern -->
+  <g transform="translate(1360, 110)">
+    <line x1="0" y1="-110" x2="0" y2="0" stroke="#47382d" stroke-width="3" />
+    <circle cx="0" cy="30" r="70" fill="url(#lanternGlow)" />
+    <polygon points="-16,0 16,0 22,45 -22,45" fill="#fef08a" stroke="#5a4433" stroke-width="4" />
+    <polygon points="-22,45 22,45 0,65" fill="#5a4433" />
+  </g>
+
+  <!-- Sweeping Curved Giant Bookshelves -->
+  <!-- Back Center Bookshelf -->
+  <g id="bookshelf-center">
+    <rect x="780" y="280" width="360" height="600" fill="url(#woodShadow)" stroke="url(#woodShelf)" stroke-width="12" />
+    <!-- Shelves Horizontals -->
+    <line x1="780" y1="380" x2="1140" y2="380" stroke="url(#woodShelf)" stroke-width="10" />
+    <line x1="780" y1="480" x2="1140" y2="480" stroke="url(#woodShelf)" stroke-width="10" />
+    <line x1="780" y1="580" x2="1140" y2="580" stroke="url(#woodShelf)" stroke-width="10" />
+    <line x1="780" y1="680" x2="1140" y2="680" stroke="url(#woodShelf)" stroke-width="10" />
+    <line x1="780" y1="780" x2="1140" y2="780" stroke="url(#woodShelf)" stroke-width="10" />
+
+    <!-- Books Rows (Colorful Pastel Books) -->
+    <!-- Row 1 -->
+    <rect x="795" y="300" width="22" height="75" fill="#93c5fd" />
+    <rect x="820" y="310" width="18" height="65" fill="#fbcfe8" />
+    <rect x="840" y="295" width="26" height="80" fill="#a7f3d0" />
+    <rect x="870" y="305" width="20" height="70" fill="#fde68a" />
+    <rect x="895" y="315" width="28" height="60" fill="#ddd6fe" />
+    <rect x="926" y="295" width="24" height="80" fill="#fed7aa" />
+    <rect x="955" y="305" width="22" height="70" fill="#bae6fd" />
+    <rect x="980" y="310" width="18" height="65" fill="#c7d2fe" />
+    <rect x="1002" y="298" width="26" height="77" fill="#fecdd3" />
+    <rect x="1032" y="305" width="32" height="70" fill="#bbf7d0" />
+    <rect x="1068" y="312" width="20" height="63" fill="#fed7aa" />
+    <rect x="1092" y="300" width="30" height="75" fill="#e9d5ff" />
+
+    <!-- Row 2 -->
+    <rect x="795" y="405" width="28" height="70" fill="#fecaca" />
+    <rect x="826" y="395" width="20" height="80" fill="#bfdbfe" />
+    <rect x="850" y="400" width="24" height="75" fill="#fef08a" />
+    <rect x="878" y="410" width="18" height="65" fill="#c4b5fd" />
+    <rect x="900" y="398" width="30" height="77" fill="#a7f3d0" />
+    <rect x="935" y="408" width="25" height="67" fill="#fbcfe8" />
+    <rect x="965" y="395" width="22" height="80" fill="#fed7aa" />
+    <rect x="990" y="402" width="32" height="73" fill="#bae6fd" />
+    <rect x="1026" y="415" width="18" height="60" fill="#ddd6fe" />
+    <rect x="1048" y="398" width="28" height="77" fill="#fde68a" />
+    <rect x="1080" y="405" width="24" height="70" fill="#99f6e4" />
+    <rect x="1108" y="412" width="18" height="63" fill="#fecdd3" />
+  </g>
+
+  <!-- Left Curved Bookshelf Wings -->
+  <g id="bookshelf-left" transform="skewY(10) translate(0, -60)">
+    <rect x="0" y="80" width="450" height="980" fill="url(#woodShadow)" stroke="url(#woodShelf)" stroke-width="16" />
+    <rect x="450" y="160" width="330" height="800" fill="url(#woodShadow)" stroke="url(#woodShelf)" stroke-width="14" />
+    <!-- Horizontal shelves on left -->
+    <line x1="0" y1="280" x2="780" y2="280" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="0" y1="420" x2="780" y2="420" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="0" y1="560" x2="780" y2="560" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="0" y1="700" x2="780" y2="700" stroke="url(#woodShelf)" stroke-width="12" />
+
+    <!-- Left Book Stacks (Pastels) -->
+    <g transform="translate(10, 160)">
+      <rect x="10" y="0" width="30" height="110" fill="#ddd6fe" />
+      <rect x="45" y="15" width="24" height="95" fill="#fbcfe8" />
+      <rect x="75" y="8" width="32" height="102" fill="#bae6fd" />
+      <rect x="112" y="20" width="28" height="90" fill="#fef08a" />
+      <rect x="145" y="0" width="36" height="110" fill="#bbf7d0" />
+      <rect x="185" y="12" width="22" height="98" fill="#fed7aa" />
+      <rect x="212" y="25" width="30" height="85" fill="#c7d2fe" />
+      <rect x="246" y="5" width="26" height="105" fill="#fecaca" />
+    </g>
+  </g>
+
+  <!-- Right Curved Bookshelf Wings -->
+  <g id="bookshelf-right" transform="skewY(-10) translate(0, 270)">
+    <rect x="1140" y="160" width="330" height="800" fill="url(#woodShadow)" stroke="url(#woodShelf)" stroke-width="14" />
+    <rect x="1470" y="80" width="450" height="980" fill="url(#woodShadow)" stroke="url(#woodShelf)" stroke-width="16" />
+    <!-- Horizontal shelves on right -->
+    <line x1="1140" y1="280" x2="1920" y2="280" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="1140" y1="420" x2="1920" y2="420" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="1140" y1="560" x2="1920" y2="560" stroke="url(#woodShelf)" stroke-width="12" />
+    <line x1="1140" y1="700" x2="1920" y2="700" stroke="url(#woodShelf)" stroke-width="12" />
+
+    <!-- Right Book Stacks (Pastels) -->
+    <g transform="translate(1480, 160)">
+      <rect x="10" y="10" width="28" height="100" fill="#bbf7d0" />
+      <rect x="42" y="0" width="34" height="110" fill="#fed7aa" />
+      <rect x="80" y="22" width="25" height="88" fill="#ddd6fe" />
+      <rect x="110" y="8" width="30" height="102" fill="#bae6fd" />
+      <rect x="145" y="18" width="24" height="92" fill="#fbcfe8" />
+      <rect x="175" y="5" width="38" height="105" fill="#fef08a" />
+      <rect x="218" y="25" width="22" height="85" fill="#99f6e4" />
+      <rect x="245" y="0" width="32" height="110" fill="#c7d2fe" />
+    </g>
+  </g>
+
+  <!-- Wooden Library Ladders Leaning on Shelves -->
+  <!-- Left Ladder -->
+  <g transform="translate(630, 480) rotate(-6)">
+    <line x1="0" y1="0" x2="60" y2="460" stroke="#785338" stroke-width="10" />
+    <line x1="45" y1="0" x2="105" y2="460" stroke="#785338" stroke-width="10" />
+    <!-- Rungs -->
+    <line x1="6" y1="50" x2="51" y2="50" stroke="#966d4e" stroke-width="6" />
+    <line x1="12" y1="100" x2="57" y2="100" stroke="#966d4e" stroke-width="6" />
+    <line x1="18" y1="150" x2="63" y2="150" stroke="#966d4e" stroke-width="6" />
+    <line x1="24" y1="200" x2="69" y2="200" stroke="#966d4e" stroke-width="6" />
+    <line x1="30" y1="250" x2="75" y2="250" stroke="#966d4e" stroke-width="6" />
+    <line x1="36" y1="300" x2="81" y2="300" stroke="#966d4e" stroke-width="6" />
+    <line x1="42" y1="350" x2="87" y2="350" stroke="#966d4e" stroke-width="6" />
+    <line x1="48" y1="400" x2="93" y2="400" stroke="#966d4e" stroke-width="6" />
+  </g>
+
+  <!-- Right Ladder -->
+  <g transform="translate(1220, 480) rotate(6)">
+    <line x1="45" y1="0" x2="-15" y2="460" stroke="#785338" stroke-width="10" />
+    <line x1="90" y1="0" x2="30" y2="460" stroke="#785338" stroke-width="10" />
+    <!-- Rungs -->
+    <line x1="39" y1="50" x2="84" y2="50" stroke="#966d4e" stroke-width="6" />
+    <line x1="33" y1="100" x2="78" y2="100" stroke="#966d4e" stroke-width="6" />
+    <line x1="27" y1="150" x2="72" y2="150" stroke="#966d4e" stroke-width="6" />
+    <line x1="21" y1="200" x2="66" y2="200" stroke="#966d4e" stroke-width="6" />
+    <line x1="15" y1="250" x2="60" y2="250" stroke="#966d4e" stroke-width="6" />
+    <line x1="9" y1="300" x2="54" y2="300" stroke="#966d4e" stroke-width="6" />
+    <line x1="3" y1="350" x2="48" y2="350" stroke="#966d4e" stroke-width="6" />
+    <line x1="-3" y1="400" x2="42" y2="400" stroke="#966d4e" stroke-width="6" />
+  </g>
+
+  <!-- Study Desk Foreground Table -->
+  <path d="M 0 880 L 1920 880 L 1920 1080 L 0 1080 Z" fill="url(#deskWood)" />
+  <line x1="0" y1="880" x2="1920" y2="880" stroke="#dfcbba" stroke-width="6" />
+
+  <!-- Stacked Leather Grimoires & Candle on Desk Left -->
+  <g transform="translate(180, 800)">
+    <!-- Stack of Books -->
+    <rect x="-80" y="40" width="180" height="35" rx="4" fill="#a78bfa" stroke="#6d28d9" stroke-width="3" />
+    <rect x="-70" y="10" width="165" height="30" rx="4" fill="#67e8f9" stroke="#0e7490" stroke-width="3" />
+    <rect x="-85" y="-20" width="195" height="30" rx="4" fill="#f472b6" stroke="#be185d" stroke-width="3" />
+    <!-- Candle -->
+    <rect x="130" y="-10" width="24" height="70" fill="#fef08a" stroke="#ca8a04" stroke-width="2" rx="3" />
+    <!-- Flame -->
+    <path d="M 142 -30 Q 148 -18 142 -10 Q 136 -18 142 -30 Z" fill="#f97316" />
+    <circle cx="142" cy="-18" r="16" fill="url(#lanternGlow)" />
+  </g>
+
+  <!-- Potion Flasks & Scrolls on Desk Right -->
+  <g transform="translate(1680, 830)">
+    <!-- Glass Potion Flask with Pink Glowing Liquid -->
+    <circle cx="40" cy="80" r="50" fill="#f43f5e" opacity="0.8" />
+    <circle cx="40" cy="80" r="75" fill="url(#lanternGlow)" opacity="0.4" />
+    <path d="M 25 35 L 25 15 L 55 15 L 55 35" stroke="#fbcfe8" stroke-width="4" fill="none" />
+    <rect x="23" y="5" width="34" height="12" rx="2" fill="#b45309" />
+    <!-- Rolled Scrolls -->
+    <rect x="-80" y="80" width="70" height="22" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2" />
+    <rect x="-70" y="65" width="60" height="20" rx="8" fill="#fde68a" stroke="#d97706" stroke-width="2" />
+  </g>
+
+  <!-- Floating Glowing Mystical Numbers & Runes Above Desk -->
+  <!-- '3' - Pastel Yellow -->
+  <g transform="translate(680, 870)">
+    <circle cx="20" cy="25" r="45" fill="url(#numAuraYellow)" />
+    <text x="20" y="45" font-family="'Cinzel Decorative', 'Georgia', serif" font-size="64" font-weight="bold" fill="#fef08a" text-anchor="middle" filter="drop-shadow(0 0 10px #eab308)">3</text>
+  </g>
+
+  <!-- '7' - Mint Green Neon -->
+  <g transform="translate(870, 860)">
+    <circle cx="25" cy="30" r="50" fill="url(#numAuraGreen)" />
+    <text x="25" y="50" font-family="'Cinzel Decorative', 'Georgia', serif" font-size="78" font-weight="bold" fill="#86efac" text-anchor="middle" filter="drop-shadow(0 0 12px #22c55e)">7</text>
+  </g>
+
+  <!-- '5' - Radiant Amber -->
+  <g transform="translate(1040, 875)">
+    <circle cx="20" cy="25" r="45" fill="url(#numAuraYellow)" />
+    <text x="20" y="45" font-family="'Cinzel Decorative', 'Georgia', serif" font-size="68" font-weight="bold" fill="#fde047" text-anchor="middle" filter="drop-shadow(0 0 10px #f59e0b)">5</text>
+  </g>
+
+  <!-- '8' - Lavender Violet -->
+  <g transform="translate(1180, 895)">
+    <circle cx="15" cy="20" r="40" fill="url(#numAuraPurple)" />
+    <text x="15" y="38" font-family="'Cinzel Decorative', 'Georgia', serif" font-size="52" font-weight="bold" fill="#d8b4fe" text-anchor="middle" filter="drop-shadow(0 0 10px #a855f7)">8</text>
+  </g>
+
+  <!-- '9' - Violet Soft Glow -->
+  <g transform="translate(1290, 880)">
+    <circle cx="20" cy="25" r="45" fill="url(#numAuraPurple)" />
+    <text x="20" y="45" font-family="'Cinzel Decorative', 'Georgia', serif" font-size="64" font-weight="bold" fill="#e9d5ff" text-anchor="middle" filter="drop-shadow(0 0 12px #c084fc)">9</text>
+  </g>
+
+  <!-- Floating Runes & Twinkling Starlight Dust -->
+  <g opacity="0.8">
+    <circle cx="730" cy="790" r="3" fill="#fef08a" />
+    <circle cx="820" cy="830" r="2.5" fill="#86efac" />
+    <circle cx="950" cy="790" r="3.5" fill="#ffffff" />
+    <circle cx="1010" cy="840" r="2" fill="#fde047" />
+    <circle cx="1120" cy="810" r="3" fill="#d8b4fe" />
+    <circle cx="1240" cy="840" r="2.5" fill="#fef08a" />
+    <circle cx="1350" cy="790" r="3" fill="#fbcfe8" />
+  </g>
+</svg>

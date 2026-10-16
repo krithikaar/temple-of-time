@@ -1,0 +1,6 @@
+{
+  "name": "TEMPLE of Time",
+  "description": "TEMPLE of TIME: Timescales of Experience: Motor, Perceptual & Latency of Executive-function",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

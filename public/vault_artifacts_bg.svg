@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Sky Gradient - Lavender / Pastel Purple Dusk -->
+    <linearGradient id="skyTrack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9384b7" />
+      <stop offset="35%" stop-color="#b6a3cf" />
+      <stop offset="70%" stop-color="#ded0e8" />
+      <stop offset="100%" stop-color="#fdf4ff" />
+    </linearGradient>
+
+    <!-- Rolling Hills Gradients -->
+    <linearGradient id="backHills" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a496c0" />
+      <stop offset="100%" stop-color="#c9bee2" />
+    </linearGradient>
+
+    <linearGradient id="frontGrass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#99d19c" />
+      <stop offset="60%" stop-color="#83c287" />
+      <stop offset="100%" stop-color="#6ba86f" />
+    </linearGradient>
+
+    <!-- Running Track Surface Gradient (Warm Sand / Ochre Athletics Clay) -->
+    <linearGradient id="trackClay" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eed8be" />
+      <stop offset="50%" stop-color="#dfc5a6" />
+      <stop offset="100%" stop-color="#cca882" />
+    </linearGradient>
+
+    <!-- Gold Pot Glow -->
+    <radialGradient id="potGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.95" />
+      <stop offset="30%" stop-color="#fef08a" stop-opacity="0.8" />
+      <stop offset="65%" stop-color="#f59e0b" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Shiny Gold Coin Gradient -->
+    <radialGradient id="coinGold" cx="40%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#fffde7" />
+      <stop offset="30%" stop-color="#fde047" />
+      <stop offset="75%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#b45309" />
+    </radialGradient>
+
+    <!-- Castle Silhouette Gradient -->
+    <linearGradient id="castleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a7ba6" />
+      <stop offset="100%" stop-color="#b8a8cc" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Backdrop -->
+  <rect width="1920" height="1080" fill="url(#skyTrack)" />
+
+  <!-- Distant Fairy Tale Castle & Hills -->
+  <path d="M 0 420 Q 350 280 800 350 Q 1300 240 1920 380 L 1920 600 L 0 600 Z" fill="url(#backHills)" />
+
+  <!-- Castle Towers & Spires on Left-Center Ridge -->
+  <g transform="translate(560, 160)" fill="url(#castleGrad)">
+    <!-- Main Keep -->
+    <rect x="0" y="80" width="85" height="140" />
+    <polygon points="-8,80 42.5,0 93,80" />
+    <!-- Left Tower -->
+    <rect x="-65" y="110" width="45" height="110" />
+    <polygon points="-72,110 -42.5,40 -13,110" />
+    <!-- Right Turret -->
+    <rect x="105" y="130" width="38" height="90" />
+    <polygon points="100,130 124,70 148,130" />
+    <!-- Far Right Spire -->
+    <rect x="160" y="150" width="28" height="70" />
+    <polygon points="155,150 174,100 193,150" />
+  </g>
+
+  <!-- Stadium Stands on Distant Right -->
+  <g transform="translate(1250, 290)">
+    <polygon points="0,70 380,70 360,110 0,110" fill="#a493b8" />
+    <polygon points="10,40 370,40 355,70 0,70" fill="#8f7eab" />
+    <!-- Banners -->
+    <polygon points="40,10 60,10 50,55" fill="#f472b6" />
+    <polygon points="160,5 180,5 170,50" fill="#60a5fa" />
+    <polygon points="280,10 300,10 290,55" fill="#facc15" />
+  </g>
+
+  <!-- Infield Green Meadow -->
+  <path d="M 0 520 Q 500 360 1100 420 Q 1600 390 1920 480 L 1920 1080 L 0 1080 Z" fill="url(#frontGrass)" />
+
+  <!-- Sweeping Curved Running Track -->
+  <g id="athletics-track">
+    <!-- Base Curved Track Surface -->
+    <path d="M 0 650 Q 300 420 1050 440 Q 1650 440 1920 540 L 1920 780 Q 1400 660 850 670 Q 250 680 0 1080 Z" fill="url(#trackClay)" />
+
+    <!-- Track White Line Markers (Lanes) -->
+    <!-- Lane 1 (Inner) -->
+    <path d="M 0 710 Q 320 470 1050 490 Q 1650 490 1920 590" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9" />
+    <!-- Lane 2 -->
+    <path d="M 0 770 Q 340 520 1050 540 Q 1650 540 1920 640" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9" />
+    <!-- Lane 3 -->
+    <path d="M 0 830 Q 360 570 1050 590 Q 1650 590 1920 690" stroke="#ffffff" stroke-width="6" fill="none" opacity="0.9" />
+    <!-- Finish Line on Right -->
+    <line x1="1200" y1="580" x2="1520" y2="820" stroke="#ffffff" stroke-width="12" />
+  </g>
+
+  <!-- Bunting Pennant Flags Along Track Railing -->
+  <g id="track-railing">
+    <!-- Outer Track Posts -->
+    <line x1="100" y1="560" x2="100" y2="670" stroke="#6b4c35" stroke-width="6" />
+    <line x1="260" y1="510" x2="260" y2="610" stroke="#6b4c35" stroke-width="6" />
+    <line x1="440" y1="470" x2="440" y2="560" stroke="#6b4c35" stroke-width="6" />
+    <line x1="640" y1="450" x2="640" y2="530" stroke="#6b4c35" stroke-width="6" />
+    <line x1="860" y1="445" x2="860" y2="520" stroke="#6b4c35" stroke-width="6" />
+    <!-- Pennants -->
+    <path d="M 100 580 Q 180 610 260 530 Q 350 560 440 490 Q 540 520 640 470" stroke="#a78bfa" stroke-width="4" fill="none" />
+    <polygon points="140,590 165,595 152,625" fill="#f472b6" />
+    <polygon points="200,580 225,575 212,610" fill="#38bdf8" />
+    <polygon points="310,540 335,535 322,570" fill="#fde047" />
+    <polygon points="380,510 405,505 392,540" fill="#c084fc" />
+  </g>
+
+  <!-- Adorable Racing Animals on Track -->
+  <!-- Runner 1: Cute Wolf / Badger Runner (Left) -->
+  <g transform="translate(390, 520)" id="badger-runner">
+    <!-- Body -->
+    <ellipse cx="60" cy="80" rx="36" ry="44" fill="#64748b" />
+    <!-- Athletic Jersey -->
+    <path d="M 35 60 L 85 60 L 80 105 L 40 105 Z" fill="#3b82f6" />
+    <!-- Running Shorts -->
+    <rect x="42" y="105" width="36" height="20" rx="4" fill="#1e293b" />
+    <!-- Legs in Mid-Stride -->
+    <rect x="36" y="125" width="14" height="32" rx="6" fill="#64748b" transform="rotate(25 36 125)" />
+    <rect x="70" y="125" width="14" height="32" rx="6" fill="#64748b" transform="rotate(-30 70 125)" />
+    <!-- Head & Ears -->
+    <circle cx="60" cy="35" r="30" fill="#64748b" />
+    <polygon points="35,20 48,-5 58,18" fill="#475569" />
+    <polygon points="62,18 72,-5 85,20" fill="#475569" />
+    <!-- Face Mask & Snout -->
+    <ellipse cx="60" cy="42" rx="18" ry="14" fill="#f8fafc" />
+    <circle cx="60" cy="38" r="4" fill="#0f172a" />
+    <circle cx="50" cy="30" r="4" fill="#0f172a" />
+    <circle cx="70" cy="30" r="4" fill="#0f172a" />
+  </g>
+
+  <!-- Runner 2: Cute Bunny Runner with Headband (Center) -->
+  <g transform="translate(760, 420)" id="bunny-runner">
+    <!-- Body -->
+    <ellipse cx="80" cy="160" rx="38" ry="46" fill="#fed7aa" />
+    <!-- Running Singlet -->
+    <path d="M 55 135 L 105 135 L 100 190 L 60 190 Z" fill="#818cf8" />
+    <!-- Shorts -->
+    <rect x="62" y="190" width="36" height="22" rx="4" fill="#4f46e5" />
+    <!-- Legs Running -->
+    <rect x="52" y="210" width="14" height="36" rx="6" fill="#fed7aa" transform="rotate(35 52 210)" />
+    <rect x="92" y="210" width="14" height="36" rx="6" fill="#fed7aa" transform="rotate(-35 92 210)" />
+    <!-- Head -->
+    <circle cx="80" cy="90" r="35" fill="#fed7aa" />
+    <!-- Long Bunny Ears -->
+    <ellipse cx="65" cy="15" rx="14" ry="45" fill="#fed7aa" transform="rotate(-15 65 15)" />
+    <ellipse cx="65" cy="15" rx="8" ry="32" fill="#fbcfe8" transform="rotate(-15 65 15)" />
+    <ellipse cx="105" cy="15" rx="14" ry="45" fill="#fed7aa" transform="rotate(20 105 15)" />
+    <ellipse cx="105" cy="15" rx="8" ry="32" fill="#fbcfe8" transform="rotate(20 105 15)" />
+    <!-- Athletic Headband -->
+    <rect x="46" y="70" width="68" height="14" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <!-- Face Details -->
+    <circle cx="68" cy="92" r="4.5" fill="#451a03" />
+    <circle cx="92" cy="92" r="4.5" fill="#451a03" />
+    <polygon points="77,100 83,100 80,104" fill="#f43f5e" />
+    <circle cx="58" cy="98" r="7" fill="#fbcfe8" opacity="0.6" />
+    <circle cx="102" cy="98" r="7" fill="#fbcfe8" opacity="0.6" />
+  </g>
+
+  <!-- Runner 3: Cute Red Panda in Pastel Tracksuit (Right) -->
+  <g transform="translate(1100, 430)" id="red-panda-runner">
+    <!-- Big Fluffy Tail -->
+    <path d="M 0 170 Q -60 180 -70 230 Q -50 250 10 200 Z" fill="#ea580c" />
+    <path d="M -35 185 Q -55 200 -40 220" stroke="#fef08a" stroke-width="12" fill="none" stroke-linecap="round" />
+    <!-- Body in Colorful Pastel Tracksuit -->
+    <ellipse cx="70" cy="170" rx="42" ry="50" fill="#f472b6" />
+    <path d="M 38 140 Q 70 125 102 140 L 98 200 L 42 200 Z" fill="#67e8f9" />
+    <!-- Legs Running -->
+    <rect x="45" y="215" width="16" height="34" rx="7" fill="#475569" transform="rotate(25 45 215)" />
+    <rect x="85" y="215" width="16" height="34" rx="7" fill="#475569" transform="rotate(-30 85 215)" />
+    <!-- Head -->
+    <circle cx="70" cy="95" r="38" fill="#ea580c" />
+    <!-- White Cheek Marks -->
+    <ellipse cx="42" cy="105" rx="12" ry="16" fill="#ffffff" />
+    <ellipse cx="98" cy="105" rx="12" ry="16" fill="#ffffff" />
+    <!-- Ears -->
+    <polygon points="35,65 48,35 60,65" fill="#ffffff" stroke="#c2410c" stroke-width="4" />
+    <polygon points="80,65 92,35 105,65" fill="#ffffff" stroke="#c2410c" stroke-width="4" />
+    <!-- Face -->
+    <circle cx="58" cy="95" r="4.5" fill="#18181b" />
+    <circle cx="82" cy="95" r="4.5" fill="#18181b" />
+    <circle cx="70" cy="104" r="5" fill="#18181b" />
+  </g>
+
+  <!-- Glowing Grand Treasure Cauldron / Vault at Finish Line -->
+  <g transform="translate(1540, 580)" id="finish-vault-treasure">
+    <!-- Sacred Ambient Radiance -->
+    <circle cx="120" cy="160" r="220" fill="url(#potGlow)" />
+
+    <!-- Draped Altar Table with Stars -->
+    <polygon points="20,240 220,240 240,340 0,340" fill="#a5b4fc" stroke="#6366f1" stroke-width="3" />
+    <polygon points="0,240 240,240 220,265 20,265" fill="#c7d2fe" />
+
+    <!-- Cast Iron Golden Cauldron -->
+    <ellipse cx="120" cy="170" rx="95" ry="75" fill="#4b5563" stroke="#374151" stroke-width="5" />
+    <!-- Cauldron Rim -->
+    <ellipse cx="120" cy="120" rx="85" ry="25" fill="#374151" stroke="#1f2937" stroke-width="4" />
+    <!-- Cauldron Handles -->
+    <circle cx="30" cy="155" r="14" fill="none" stroke="#d97706" stroke-width="6" />
+    <circle cx="210" cy="155" r="14" fill="none" stroke="#d97706" stroke-width="6" />
+
+    <!-- Overflowing Golden Coins Pile -->
+    <ellipse cx="120" cy="115" rx="76" ry="20" fill="url(#coinGold)" />
+    <!-- Individual Shining Coins -->
+    <circle cx="95" cy="112" r="14" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+    <circle cx="125" cy="108" r="15" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+    <circle cx="150" cy="114" r="13" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+    <circle cx="108" cy="118" r="14" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+    <circle cx="75" cy="120" r="12" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+    <circle cx="138" cy="122" r="13" fill="url(#coinGold)" stroke="#b45309" stroke-width="1.5" />
+
+    <!-- Golden Coins on Table -->
+    <circle cx="45" cy="255" r="10" fill="url(#coinGold)" stroke="#b45309" />
+    <circle cx="70" cy="265" r="11" fill="url(#coinGold)" stroke="#b45309" />
+    <circle cx="195" cy="260" r="10" fill="url(#coinGold)" stroke="#b45309" />
+
+    <!-- Sparkling Golden Stars & Magic Dust -->
+    <polygon points="120,50 124,65 139,69 124,73 120,88 116,73 101,69 116,65" fill="#fef08a" />
+    <polygon points="40,90 43,100 53,103 43,106 40,116 37,106 27,103 37,100" fill="#fef08a" />
+    <polygon points="200,80 203,90 213,93 203,96 200,106 197,96 187,93 197,90" fill="#fef08a" />
+  </g>
+</svg>

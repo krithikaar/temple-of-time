@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Sky Background Gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#36294f" />
+      <stop offset="25%" stop-color="#4e3b6e" />
+      <stop offset="55%" stop-color="#76659c" />
+      <stop offset="80%" stop-color="#a493c7" />
+      <stop offset="100%" stop-color="#ded4ec" />
+    </linearGradient>
+
+    <!-- Cloud Base Gradient -->
+    <linearGradient id="cloudDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d2144" />
+      <stop offset="50%" stop-color="#3b2b56" />
+      <stop offset="100%" stop-color="#554077" />
+    </linearGradient>
+
+    <linearGradient id="cloudMid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4f3c70" />
+      <stop offset="100%" stop-color="#735d9a" />
+    </linearGradient>
+
+    <linearGradient id="cloudLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#806ca8" />
+      <stop offset="100%" stop-color="#b8a7db" />
+    </linearGradient>
+
+    <linearGradient id="cloudPale" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#b6a3d6" />
+      <stop offset="100%" stop-color="#e3daf2" />
+    </linearGradient>
+
+    <!-- Ocean Sea Gradient -->
+    <linearGradient id="seaDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#115e59" />
+      <stop offset="40%" stop-color="#0d9488" />
+      <stop offset="80%" stop-color="#14b8a6" />
+      <stop offset="100%" stop-color="#5eead4" />
+    </linearGradient>
+
+    <linearGradient id="seaSurf" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#5eead4" />
+      <stop offset="50%" stop-color="#99f6e4" />
+      <stop offset="100%" stop-color="#ccfbf1" />
+    </linearGradient>
+
+    <!-- Tower Stone Gradient -->
+    <linearGradient id="towerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c4bccf" />
+      <stop offset="40%" stop-color="#e7e3ed" />
+      <stop offset="80%" stop-color="#ded8e6" />
+      <stop offset="100%" stop-color="#968c9f" />
+    </linearGradient>
+
+    <linearGradient id="towerRoof" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#aba0b5" />
+      <stop offset="50%" stop-color="#8c7f99" />
+      <stop offset="100%" stop-color="#5f536c" />
+    </linearGradient>
+
+    <!-- Cliff Rocks Gradient -->
+    <linearGradient id="cliffRock" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#50425a" />
+      <stop offset="35%" stop-color="#3d3047" />
+      <stop offset="70%" stop-color="#282030" />
+      <stop offset="100%" stop-color="#1b1522" />
+    </linearGradient>
+
+    <linearGradient id="cliffHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#81718f" />
+      <stop offset="100%" stop-color="#574964" />
+    </linearGradient>
+
+    <!-- Lightning Glow Filter -->
+    <filter id="lightningGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur1" />
+      <feGaussianBlur stdDeviation="24" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="haloGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="glow" />
+      <feMerge>
+        <feMergeNode in="glow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Concentric Halo Gradient -->
+    <radialGradient id="spireHalo" cx="65%" cy="28%" r="45%">
+      <stop offset="0%" stop-color="#fffbe6" stop-opacity="0.8" />
+      <stop offset="15%" stop-color="#fef08a" stop-opacity="0.45" />
+      <stop offset="35%" stop-color="#fde047" stop-opacity="0.2" />
+      <stop offset="60%" stop-color="#fef9c3" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- 1. Sky Canvas -->
+  <rect width="1920" height="1080" fill="url(#skyGrad)" />
+
+  <!-- 2. Concentric Resonance Waves Behind Spire -->
+  <g id="resonance-waves" filter="url(#haloGlow)" opacity="0.65">
+    <circle cx="1250" cy="280" r="120" fill="none" stroke="#fef08a" stroke-width="2.5" stroke-opacity="0.55" />
+    <circle cx="1250" cy="280" r="190" fill="none" stroke="#fef08a" stroke-width="2" stroke-opacity="0.45" />
+    <circle cx="1250" cy="280" r="280" fill="none" stroke="#fde047" stroke-width="2.5" stroke-opacity="0.35" />
+    <circle cx="1250" cy="280" r="380" fill="none" stroke="#fde047" stroke-width="2" stroke-opacity="0.25" />
+    <circle cx="1250" cy="280" r="490" fill="none" stroke="#fef9c3" stroke-width="1.8" stroke-opacity="0.18" />
+    <circle cx="1250" cy="280" r="620" fill="none" stroke="#fef9c3" stroke-width="1.5" stroke-opacity="0.12" />
+    <circle cx="1250" cy="280" r="760" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.08" />
+  </g>
+
+  <!-- Radiant Radial Halo -->
+  <circle cx="1250" cy="280" r="450" fill="url(#spireHalo)" />
+
+  <!-- 3. Twinkling Stars in Sky -->
+  <g id="stars" fill="#ffffff" opacity="0.85">
+    <!-- 4-pointed stars -->
+    <path d="M 1795 95 Q 1795 105 1805 105 Q 1795 105 1795 115 Q 1795 105 1785 105 Q 1795 105 1795 95 Z" />
+    <path d="M 1835 305 Q 1835 313 1843 313 Q 1835 313 1835 321 Q 1835 313 1827 313 Q 1835 313 1835 305 Z" />
+    <path d="M 1690 190 Q 1690 196 1696 196 Q 1690 196 1690 202 Q 1690 196 1684 196 Q 1690 196 1690 190 Z" />
+    <path d="M 360 290 Q 360 297 367 297 Q 360 297 360 304 Q 360 297 353 297 Q 360 297 360 290 Z" />
+    <path d="M 165 390 Q 165 397 172 397 Q 165 397 165 404 Q 165 397 158 397 Q 165 397 165 390 Z" />
+    <path d="M 72 485 Q 72 491 78 491 Q 72 491 72 497 Q 72 491 66 491 Q 72 491 72 485 Z" />
+    <path d="M 465 545 Q 465 550 470 550 Q 465 550 465 555 Q 465 550 460 550 Q 465 550 465 545 Z" />
+  </g>
+
+  <!-- 4. Layered Storm Clouds -->
+  <!-- Deep Background Clouds -->
+  <path d="M 0 0 L 1920 0 L 1920 340 C 1820 320 1740 360 1620 330 C 1520 300 1480 340 1380 310 C 1280 290 1200 330 1100 300 C 980 270 910 320 800 290 C 690 260 620 310 500 280 C 390 260 310 320 200 290 C 120 270 60 310 0 290 Z" fill="url(#cloudDark)" opacity="0.95" />
+
+  <!-- Mid Clouds Left Swirls -->
+  <path d="M 0 60 C 90 40 160 80 260 60 C 370 40 440 90 560 60 C 680 40 760 100 890 70 C 980 50 1040 90 1120 70 C 1040 140 950 120 860 170 C 740 150 660 210 540 180 C 430 160 350 210 230 180 C 140 160 80 200 0 180 Z" fill="url(#cloudMid)" opacity="0.85" />
+
+  <!-- Atmospheric Billowing Cloud Mass Left -->
+  <path d="M 0 160 C 110 130 190 190 310 160 C 430 140 510 210 630 180 C 750 150 830 220 960 180 C 1030 200 1080 240 1140 230 C 1070 300 980 280 890 340 C 770 320 680 390 550 350 C 420 320 330 380 200 350 C 100 330 40 370 0 350 Z" fill="url(#cloudMid)" />
+
+  <!-- Lower Billowing Lavender Clouds -->
+  <path d="M 0 340 C 120 300 220 380 360 340 C 490 310 590 400 730 360 C 860 330 940 420 1080 380 C 990 470 880 450 780 530 C 640 500 540 590 390 550 C 260 520 160 590 0 560 Z" fill="url(#cloudLight)" opacity="0.9" />
+
+  <!-- Pale Horizon Clouds Behind Waves -->
+  <path d="M 0 540 C 130 500 240 590 390 550 C 530 520 640 620 790 580 C 920 550 1010 640 1150 610 L 1150 820 C 850 820 450 850 0 850 Z" fill="url(#cloudPale)" opacity="0.8" />
+
+  <!-- 5. Ocean Waters (Left & Lower Canvas) -->
+  <path d="M 0 820 Q 240 800 480 825 T 960 810 T 1300 830 L 1300 1080 L 0 1080 Z" fill="url(#seaDeep)" />
+
+  <!-- Ocean Waves and Crests -->
+  <path d="M 0 840 C 120 830 190 850 310 835 C 440 820 530 850 670 830 C 800 815 900 845 1030 825 L 1120 860 C 980 885 860 860 720 885 C 570 910 440 870 290 895 C 160 915 90 880 0 900 Z" fill="#2dd4bf" opacity="0.7" />
+
+  <!-- Foreground Wave Foam & Crests -->
+  <path d="M 0 900 C 100 885 160 915 260 895 C 380 875 460 915 580 890 C 690 870 780 910 890 885 L 980 930 C 860 955 750 930 630 955 C 500 980 390 940 260 965 C 140 985 80 950 0 970 Z" fill="url(#seaSurf)" opacity="0.85" />
+
+  <!-- Crashing Seafoam Spray against the Cliffs -->
+  <g id="seafoam-splash" fill="#ffffff" opacity="0.9">
+    <ellipse cx="680" cy="880" rx="35" ry="32" />
+    <ellipse cx="730" cy="850" rx="48" ry="44" />
+    <ellipse cx="780" cy="830" rx="55" ry="50" />
+    <ellipse cx="840" cy="810" rx="60" ry="56" />
+    <ellipse cx="900" cy="790" rx="68" ry="62" />
+    <ellipse cx="950" cy="810" rx="55" ry="50" />
+    <ellipse cx="1010" cy="835" rx="48" ry="42" />
+    <ellipse cx="1060" cy="870" rx="42" ry="38" />
+    <!-- Droplets -->
+    <circle cx="750" cy="790" r="14" fill="#ccfbf1" />
+    <circle cx="810" cy="750" r="18" fill="#e0f2fe" />
+    <circle cx="870" cy="730" r="22" fill="#ffffff" />
+    <circle cx="920" cy="740" r="16" fill="#e0f2fe" />
+    <circle cx="980" cy="770" r="14" fill="#ffffff" />
+    <circle cx="690" cy="830" r="12" fill="#ffffff" />
+    <circle cx="640" cy="870" r="16" fill="#ccfbf1" />
+  </g>
+
+  <!-- 6. Rocky Cliffs (Right Foreground) -->
+  <g id="cliff-formation">
+    <!-- Base Cliff Silhouette -->
+    <polygon points="1080,780 1150,740 1200,750 1250,720 1330,735 1420,710 1530,725 1670,680 1810,610 1920,530 1920,1080 980,1080 1020,860" fill="url(#cliffRock)" />
+
+    <!-- Cliff Facets & Shadows -->
+    <polygon points="1150,740 1200,750 1220,820 1160,860 1080,780" fill="url(#cliffHighlight)" opacity="0.6" />
+    <polygon points="1250,720 1330,735 1310,830 1240,810" fill="#2d2235" />
+    <polygon points="1330,735 1420,710 1440,810 1360,845" fill="url(#cliffHighlight)" opacity="0.5" />
+    <polygon points="1420,710 1530,725 1550,830 1460,820" fill="#231a2a" />
+    <polygon points="1530,725 1670,680 1700,780 1580,820" fill="url(#cliffHighlight)" opacity="0.45" />
+    <polygon points="1670,680 1810,610 1850,740 1730,770" fill="#1f1626" />
+    <polygon points="1810,610 1920,530 1920,720 1860,760" fill="url(#cliffHighlight)" opacity="0.4" />
+  </g>
+
+  <!-- 7. The Weather Spire Tower -->
+  <g id="weather-spire">
+    <!-- Foundation Pedestal -->
+    <polygon points="1160,740 1320,740 1340,680 1180,680" fill="#847890" stroke="#362943" stroke-width="3" />
+
+    <!-- Ruined Buttress Structure to the right of tower -->
+    <polygon points="1290,680 1330,680 1335,620 1310,610 1290,630" fill="#a498b0" stroke="#362943" stroke-width="2.5" />
+
+    <!-- Main Tower Cylindrical Shaft -->
+    <polygon points="1190,680 1300,680 1290,470 1195,470" fill="url(#towerGrad)" stroke="#362943" stroke-width="3" />
+
+    <!-- Stone Masonry Lines on Shaft -->
+    <path d="M 1193 640 L 1297 640 M 1193 600 L 1295 600 M 1194 560 L 1293 560 M 1194 520 L 1292 520" stroke="#8d8199" stroke-width="1.8" />
+    <!-- Vertical Joint Details -->
+    <line x1="1230" y1="640" x2="1230" y2="600" stroke="#8d8199" stroke-width="1.5" />
+    <line x1="1265" y1="600" x2="1265" y2="560" stroke="#8d8199" stroke-width="1.5" />
+    <line x1="1225" y1="560" x2="1225" y2="520" stroke="#8d8199" stroke-width="1.5" />
+
+    <!-- Arched Windows in Shaft with warm amber light -->
+    <g id="shaft-windows">
+      <!-- Upper central window -->
+      <path d="M 1215 505 Q 1225 495 1235 505 L 1235 538 L 1215 538 Z" fill="#2d2238" stroke="#362943" stroke-width="2.5" />
+      <path d="M 1218 510 Q 1225 502 1232 510 L 1232 535 L 1218 535 Z" fill="#fde047" opacity="0.8" />
+
+      <!-- Lower right window -->
+      <path d="M 1268 565 Q 1274 558 1280 565 L 1280 592 L 1268 592 Z" fill="#2d2238" stroke="#362943" stroke-width="2" />
+      <path d="M 1270 568 Q 1274 563 1278 568 L 1278 590 L 1270 590 Z" fill="#fde047" opacity="0.85" />
+    </g>
+
+    <!-- Corbel Cornice Gallery (Below Conical Roof) -->
+    <polygon points="1178,470 1308,470 1312,410 1175,410" fill="url(#towerGrad)" stroke="#362943" stroke-width="3" />
+    <line x1="1175" y1="410" x2="1312" y2="410" stroke="#362943" stroke-width="3.5" />
+
+    <!-- Gallery Arched Lantern Windows -->
+    <g id="gallery-windows">
+      <path d="M 1230 425 Q 1242 415 1254 425 L 1254 455 L 1230 455 Z" fill="#fde047" stroke="#362943" stroke-width="2" />
+      <path d="M 1195 430 Q 1205 422 1215 430 L 1215 455 L 1195 455 Z" fill="#fde047" stroke="#362943" stroke-width="2" />
+      <path d="M 1270 430 Q 1280 422 1290 430 L 1290 455 L 1270 455 Z" fill="#fde047" stroke="#362943" stroke-width="2" />
+    </g>
+
+    <!-- Conical Spire Roof -->
+    <polygon points="1175,410 1312,410 1246,260" fill="url(#towerRoof)" stroke="#362943" stroke-width="3.5" />
+    <!-- Slate tile contour lines -->
+    <path d="M 1195 375 L 1294 375 M 1210 335 L 1278 335 M 1228 295 L 1262 295" stroke="#483d54" stroke-width="2" />
+    <line x1="1246" y1="260" x2="1246" y2="410" stroke="#362943" stroke-width="2.5" />
+
+    <!-- Spire Metal Finial Needle Tip -->
+    <line x1="1246" y1="260" x2="1246" y2="235" stroke="#fde047" stroke-width="4.5" />
+  </g>
+
+  <!-- 8. Brilliant Lightning Bolt Striking Spire Needle -->
+  <g id="lightning-bolt" filter="url(#lightningGlow)">
+    <!-- Outer Golden Bolt Aura -->
+    <polygon points="1310,0 1260,80 1290,85 1235,160 1270,165 1246,245 1242,175 1210,170 1250,95 1225,90" fill="#fde047" opacity="0.6" />
+
+    <!-- Core Radiant White-Yellow Lightning Bolt -->
+    <polygon points="1300,0 1255,80 1280,85 1230,160 1260,165 1246,240 1244,175 1218,170 1245,95 1228,90" fill="#ffffff" />
+    <polygon points="1295,0 1255,80 1278,85 1233,160 1258,165 1246,238 1244,175 1220,170 1244,95 1230,90" fill="#fef08a" />
+  </g>
+
+  <!-- Sparkle Burst at Point of Lightning Impact -->
+  <g id="lightning-spark-burst" filter="url(#haloGlow)">
+    <circle cx="1246" cy="240" r="14" fill="#ffffff" />
+    <circle cx="1246" cy="240" r="28" fill="#fef08a" opacity="0.75" />
+    <line x1="1220" y1="240" x2="1272" y2="240" stroke="#ffffff" stroke-width="3" />
+    <line x1="1246" y1="214" x2="1246" y2="266" stroke="#ffffff" stroke-width="3" />
+    <line x1="1228" y1="222" x2="1264" y2="258" stroke="#fde047" stroke-width="2" />
+    <line x1="1264" y1="222" x2="1228" y2="258" stroke="#fde047" stroke-width="2" />
+  </g>
+</svg>

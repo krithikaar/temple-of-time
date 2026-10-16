@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%">
+  <defs>
+    <!-- Room Wall Gradient -->
+    <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ded4e8" />
+      <stop offset="50%" stop-color="#cfc3dd" />
+      <stop offset="100%" stop-color="#b8a8cc" />
+    </linearGradient>
+
+    <!-- Floor Wood Gradient -->
+    <linearGradient id="woodFloor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c5b0a0" />
+      <stop offset="50%" stop-color="#af9685" />
+      <stop offset="100%" stop-color="#8a7263" />
+    </linearGradient>
+
+    <!-- Beams & Woodwork -->
+    <linearGradient id="timberBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#735747" />
+      <stop offset="50%" stop-color="#8f6e5b" />
+      <stop offset="100%" stop-color="#5a4235" />
+    </linearGradient>
+
+    <!-- Fireplace Stone Gradient -->
+    <linearGradient id="stoneHearth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5ede3" />
+      <stop offset="50%" stop-color="#ded0c0" />
+      <stop offset="100%" stop-color="#b8a694" />
+    </linearGradient>
+
+    <!-- Fire Glow Radial -->
+    <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fffbeb" stop-opacity="0.95" />
+      <stop offset="25%" stop-color="#fde047" stop-opacity="0.8" />
+      <stop offset="60%" stop-color="#f97316" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Window Sky Gradient (Lavender Night with Stars) -->
+    <linearGradient id="windowNightSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3c2f57" />
+      <stop offset="50%" stop-color="#604f80" />
+      <stop offset="100%" stop-color="#9381b5" />
+    </linearGradient>
+
+    <!-- Carpet Checkered Tint -->
+    <linearGradient id="carpetBoard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cfc7ea" />
+      <stop offset="100%" stop-color="#9b8dc2" />
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background Wall -->
+  <rect width="1920" height="1080" fill="url(#wallGrad)" />
+
+  <!-- 2. Wood Floor Base -->
+  <polygon points="0,680 1920,680 1920,1080 0,1080" fill="url(#woodFloor)" />
+
+  <!-- Timber Ceiling & Rafters -->
+  <polygon points="0,0 1920,0 1920,140 0,220" fill="url(#timberBeam)" />
+  <line x1="0" y1="220" x2="1920" y2="140" stroke="#4a3528" stroke-width="8" />
+
+  <!-- Heavy Timber Wall Posts & Arches -->
+  <rect x="670" y="80" width="45" height="660" fill="url(#timberBeam)" stroke="#4a3528" stroke-width="3" />
+  <rect x="1360" y="40" width="50" height="700" fill="url(#timberBeam)" stroke="#4a3528" stroke-width="3" />
+  <!-- Arch connecting beam -->
+  <path d="M 670 240 Q 1020 90 1360 200" fill="none" stroke="url(#timberBeam)" stroke-width="36" />
+  <path d="M 670 240 Q 1020 90 1360 200" fill="none" stroke="#4a3528" stroke-width="4" />
+
+  <!-- 3. Central Gothic Arched Windows (Night Sky with Twinkling Stars) -->
+  <g id="gothic-windows">
+    <!-- Center Tall Window -->
+    <path d="M 1150 120 Q 1200 40 1250 120 L 1250 510 L 1150 510 Z" fill="url(#windowNightSky)" stroke="#4a3528" stroke-width="6" />
+    <!-- Left Narrow Window -->
+    <path d="M 1060 220 Q 1090 160 1120 220 L 1120 490 L 1060 490 Z" fill="url(#windowNightSky)" stroke="#4a3528" stroke-width="5" />
+    <!-- Right Narrow Window -->
+    <path d="M 1280 200 Q 1310 150 1340 200 L 1340 490 L 1280 490 Z" fill="url(#windowNightSky)" stroke="#4a3528" stroke-width="5" />
+
+    <!-- Window Tracery / Mullions -->
+    <line x1="1200" y1="120" x2="1200" y2="510" stroke="#4a3528" stroke-width="4" />
+    <line x1="1150" y1="320" x2="1250" y2="320" stroke="#4a3528" stroke-width="3" />
+    <line x1="1150" y1="420" x2="1250" y2="420" stroke="#4a3528" stroke-width="3" />
+
+    <!-- Twinkling Stars in Window Sky -->
+    <g fill="#ffffff" opacity="0.9">
+      <circle cx="1210" cy="180" r="2.5" />
+      <circle cx="1180" cy="240" r="1.8" />
+      <circle cx="1230" cy="280" r="2.2" />
+      <circle cx="1190" cy="360" r="1.5" />
+      <circle cx="1225" cy="400" r="2" />
+      <circle cx="1090" cy="280" r="1.8" />
+      <circle cx="1310" cy="260" r="2" />
+      <!-- Small 4-pointed sparkle -->
+      <path d="M 1205 160 Q 1205 165 1210 165 Q 1205 165 1205 170 Q 1205 165 1200 165 Q 1205 165 1205 160 Z" />
+    </g>
+  </g>
+
+  <!-- 4. Stone Fireplace on Left -->
+  <g id="stone-fireplace">
+    <!-- Chimney Breast -->
+    <polygon points="170,40 500,40 540,380 130,380" fill="url(#stoneHearth)" stroke="#3e3025" stroke-width="4" />
+    
+    <!-- Heavy Mantel Shelf -->
+    <polygon points="100,380 570,380 580,420 90,420" fill="url(#timberBeam)" stroke="#3e3025" stroke-width="4" />
+
+    <!-- Fireplace Arch & Opening -->
+    <polygon points="110,420 560,420 540,710 130,710" fill="url(#stoneHearth)" stroke="#3e3025" stroke-width="4" />
+    <!-- Firebox Cavity -->
+    <path d="M 190 700 L 190 540 Q 335 480 480 540 L 480 700 Z" fill="#201815" stroke="#3e3025" stroke-width="4" />
+
+    <!-- Hearth Flame Glow -->
+    <circle cx="335" cy="620" r="120" fill="url(#fireGlow)" />
+    
+    <!-- Fire Logs & Flames -->
+    <polygon points="230,680 440,680 420,640 250,640" fill="#4d2f1f" />
+    <!-- Flames -->
+    <path d="M 280 660 Q 300 580 320 630 Q 340 550 360 620 Q 380 580 400 660 Z" fill="#fbbf24" opacity="0.9" />
+    <path d="M 300 660 Q 320 600 335 630 Q 350 590 370 660 Z" fill="#fffbeb" opacity="0.95" />
+
+    <!-- Clock & Framed Portrait on Mantel -->
+    <rect x="295" y="340" width="75" height="40" rx="6" fill="#8f6e5b" stroke="#3e3025" stroke-width="2.5" />
+    <circle cx="332" cy="360" r="14" fill="#fef3c7" stroke="#3e3025" stroke-width="1.5" />
+    
+    <!-- Large Framed King Portrait on Chimney -->
+    <rect x="250" y="80" width="170" height="230" rx="8" fill="#eab308" stroke="#78350f" stroke-width="6" />
+    <rect x="265" y="95" width="140" height="200" fill="#cbd5e1" stroke="#3e3025" stroke-width="2" />
+    <circle cx="335" cy="165" r="32" fill="#f8fafc" stroke="#3e3025" stroke-width="2" />
+    <!-- King Crown -->
+    <path d="M 315 135 L 325 145 L 335 130 L 345 145 L 355 135 L 355 150 L 315 150 Z" fill="#eab308" stroke="#3e3025" stroke-width="1.5" />
+  </g>
+
+  <!-- 5. Royal Chess Board Portals on Right Wall -->
+  <g id="right-wall-frames">
+    <rect x="1440" y="120" width="220" height="170" rx="6" fill="#eab308" stroke="#78350f" stroke-width="6" />
+    <rect x="1455" y="135" width="190" height="140" fill="#e0e7ff" stroke="#3e3025" stroke-width="2" />
+    <!-- Mini Chess Grid in Frame -->
+    <g opacity="0.6">
+      <rect x="1480" y="145" width="140" height="120" fill="#a5b4fc" />
+    </g>
+
+    <rect x="1440" y="320" width="220" height="170" rx="6" fill="#eab308" stroke="#78350f" stroke-width="6" />
+    <rect x="1455" y="335" width="190" height="140" fill="#e0e7ff" stroke="#3e3025" stroke-width="2" />
+  </g>
+
+  <!-- 6. Giant Enchanted Chessboard on the Floor (Foreground) -->
+  <g id="floor-chessboard">
+    <!-- Rug Base -->
+    <polygon points="160,780 1380,680 1580,940 760,1050" fill="#818cf8" stroke="#3730a3" stroke-width="4" opacity="0.6" />
+    <polygon points="210,770 1340,685 1530,920 800,1025" fill="#f8fafc" stroke="#4338ca" stroke-width="3" />
+
+    <!-- Checkered Grid Lines (Isometric Perspective) -->
+    <!-- Grid Squares alternating Lavender & Soft Indigo -->
+    <polygon points="800,1025 960,995 860,935 700,965" fill="#c7d2fe" />
+    <polygon points="960,995 1120,965 1020,905 860,935" fill="#ffffff" />
+    <polygon points="1120,965 1280,935 1180,875 1020,905" fill="#c7d2fe" />
+    <polygon points="1280,935 1440,905 1340,845 1180,875" fill="#ffffff" />
+
+    <polygon points="700,965 860,935 770,875 610,905" fill="#ffffff" />
+    <polygon points="860,935 1020,905 930,845 770,875" fill="#c7d2fe" />
+    <polygon points="1020,905 1180,875 1090,815 930,845" fill="#ffffff" />
+    <polygon points="1180,875 1340,845 1250,785 1090,815" fill="#c7d2fe" />
+
+    <!-- Living Chess Pieces on Floor -->
+    <!-- White Knight (Horse Head) -->
+    <g id="floor-knight" transform="translate(970, 770)">
+      <path d="M 30 70 L 60 70 L 58 55 Q 65 35 55 20 Q 45 12 30 18 Q 20 25 22 40 L 15 45 L 25 55 Z" fill="#ffffff" stroke="#334155" stroke-width="3" />
+      <circle cx="36" cy="28" r="3" fill="#1e293b" />
+      <!-- Golden Glow Aura -->
+      <ellipse cx="40" cy="72" rx="28" ry="8" fill="#fde047" opacity="0.4" />
+    </g>
+
+    <!-- White Pawn -->
+    <g id="floor-pawn" transform="translate(1080, 830)">
+      <circle cx="25" cy="20" r="14" fill="#ffffff" stroke="#334155" stroke-width="2.5" />
+      <polygon points="16,35 34,35 38,65 12,65" fill="#ffffff" stroke="#334155" stroke-width="2.5" />
+      <rect x="8" y="65" width="34" height="8" rx="2" fill="#ffffff" stroke="#334155" stroke-width="2" />
+    </g>
+
+    <!-- Black Rook (Castle Tower) -->
+    <g id="floor-rook" transform="translate(860, 790)">
+      <rect x="15" y="20" width="35" height="15" fill="#334155" stroke="#0f172a" stroke-width="2.5" />
+      <rect x="20" y="35" width="25" height="35" fill="#334155" stroke="#0f172a" stroke-width="2.5" />
+      <rect x="12" y="70" width="41" height="10" rx="2" fill="#334155" stroke="#0f172a" stroke-width="2.5" />
+      <!-- Cyan Glow Aura -->
+      <ellipse cx="32" cy="82" rx="26" ry="7" fill="#38bdf8" opacity="0.4" />
+    </g>
+  </g>
+
+  <!-- 7. Cozy Armchairs and Small Tables -->
+  <!-- Left Velvet Armchair -->
+  <g id="left-armchair">
+    <path d="M 0 650 Q 80 620 120 700 L 100 950 L 0 980 Z" fill="#93688e" stroke="#4a2846" stroke-width="4" />
+    <path d="M 120 700 Q 150 780 130 920" fill="none" stroke="#4a2846" stroke-width="4" />
+  </g>
+
+  <!-- Right Teal/Blue Armchair -->
+  <g id="right-armchair" transform="translate(1260, 480)">
+    <rect x="30" y="70" width="100" height="110" rx="18" fill="#5eead4" stroke="#0f766e" stroke-width="3.5" />
+    <rect x="45" y="110" width="70" height="60" rx="8" fill="#99f6e4" />
+  </g>
+</svg>
