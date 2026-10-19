@@ -104,11 +104,11 @@ export function renderDashboard(container: HTMLElement, profile: ParticipantProf
     const room6Done = isRoom6Completed();
 
     container.innerHTML = `
-      <!-- Top Navigation Bar (Strict 3-zone contract) -->
+      <!-- Top Navigation Bar -->
       <header class="border-b border-stone-800 bg-[#070913]/95 backdrop-blur-md sticky top-0 z-30">
         <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
           
-          <!-- Zone 1: Wordmark -->
+          <!-- Left: Temple of Time Wordmark -->
           <div class="flex items-center space-x-2.5">
             <div class="w-7 h-7 rounded-full border border-amber-500/50 bg-amber-500/10 flex items-center justify-center text-amber-400">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -121,19 +121,8 @@ export function renderDashboard(container: HTMLElement, profile: ParticipantProf
             </span>
           </div>
 
-          <!-- Zone 2: Progress Tracker -->
-          <div class="flex items-center space-x-2 text-xs font-mono text-stone-300">
-            <span class="text-amber-400 font-semibold font-mono-num">${progressPercent}% Completed</span>
-          </div>
-
-          <!-- Zone 3: Actions (Streak + Participant Badge + Stage Tools) -->
+          <!-- Right: Sub_ID and Settings Button -->
           <div class="flex items-center space-x-2">
-            <!-- Daily Streak Badge -->
-            <div class="flex items-center space-x-1 px-2 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono" title="Longitudinal Retention Streak">
-              <span class="text-amber-400">🔥</span>
-              <span class="font-mono-num font-bold">${activeProfile.streak_count || 1}d</span>
-            </div>
-
             <!-- Subject ID Badge -->
             <button id="btn-profile-badge" 
                     title="Initiate Registry: ${activeProfile.subject_id}"
@@ -232,6 +221,20 @@ export function renderDashboard(container: HTMLElement, profile: ParticipantProf
                 <span>Room 5: The Vault</span>
               </div>
             </div>
+
+            <!-- Streak Counter Button & Daily Reminder -->
+            <div class="pt-3 border-t border-stone-800/80 flex items-center gap-3">
+              <button id="btn-streak-counter"
+                      type="button"
+                      title="Daily Login Streak: ${activeProfile.streak_count || 1} day(s)"
+                      class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 hover:border-amber-400 text-amber-300 font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(245,158,11,0.15)] active:scale-95 cursor-pointer select-none shrink-0">
+                <span class="text-amber-400 text-sm">🔥</span>
+                <span>${activeProfile.streak_count || 1}d Streak</span>
+              </button>
+              <span class="text-[11px] text-stone-400 leading-tight">
+                Log in every day to maintain your streak
+              </span>
+            </div>
           </div>
         </section>
 
@@ -300,6 +303,14 @@ export function renderDashboard(container: HTMLElement, profile: ParticipantProf
     document.getElementById('btn-profile-badge')?.addEventListener('click', () => {
       playTactileClick();
       callbacks.onOpenAuth();
+    });
+
+    // Streak Counter Button Click
+    document.getElementById('btn-streak-counter')?.addEventListener('click', () => {
+      playTactileClick();
+      const prof = getProfile() || currentProfile;
+      const count = prof.streak_count || 1;
+      showResetToast(`🔥 Streak: ${count} day${count === 1 ? '' : 's'} active. Log in every day to maintain your streak!`);
     });
 
     // 2. Settings Drawer Toggle

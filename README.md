@@ -8,10 +8,10 @@
 ## Paradigm Suite
 
 The platform integrates cognitive-behavioral paradigms including:
-- **Perceptual Timing:** Simultaneity Judgement (SJ) and Temporal Order Judgement (TOJ).
+- **Perceptual Timing:** Simultaneity Judgement (SJ) and Temporal Order Judgement (TOJ) task.
 - **Motor Control & Timing:** Spontaneous Motor Tapping (SMT) and Time Production tasks.
-- **Executive Function & Decision Making:** Delay Discounting and Multi-Source Interference Tasks (MSIT).
-- **Agency:** Sense of Agency (SoA) intentional binding tasks.
+- **Executive Function & Decision Making:** Delay Discounting and Multi-Source Interference Task (MSIT).
+- **Agency:** Sense of Agency (SoA) task.
 
 ---
 
