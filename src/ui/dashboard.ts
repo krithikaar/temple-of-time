@@ -574,8 +574,8 @@ function openScrollLibraryModal(onCompleteCallback: () => void): void {
   const existing = document.getElementById('scroll-library-suite-modal');
   if (existing) existing.remove();
 
-  const googleFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc70McR5eCpufXmyxwd0NTOLNelKum3awV7nENp5Pj1mE5k9g/viewform?embedded=true';
-  const googleFormExternalUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc70McR5eCpufXmyxwd0NTOLNelKum3awV7nENp5Pj1mE5k9g/viewform?usp=header';
+  const googleFormEmbedUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfTSJQJGzS4v_uXPsl9DMX-KbmIHOfU940zKYZtx_nAZLwXSw/viewform?embedded=true';
+  const googleFormExternalUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfTSJQJGzS4v_uXPsl9DMX-KbmIHOfU940zKYZtx_nAZLwXSw/viewform?usp=publish-editor';
 
   const modalContainer = document.createElement('div');
   modalContainer.id = 'scroll-library-suite-modal';
