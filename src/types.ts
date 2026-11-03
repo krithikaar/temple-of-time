@@ -2,7 +2,7 @@
  * TEMPLE of Time - Psychophysics Battery Types & Data Models
  */
 
-export type ScreenState = 'auth' | 'dashboard' | 'task_arena' | 'feedback';
+export type ScreenState = 'auth' | 'dashboard' | 'task_arena' | 'feedback' | 'consent';
 
 export type TaskShortcode = 'SJ' | 'SOA' | 'SMT' | 'TP' | 'DD' | 'MSIT';
 
@@ -36,6 +36,8 @@ export interface ParticipantProfile {
   rank_title: string;
   total_sessions: number;
   room_mastery: Record<string, number>; // roomId -> percentage (0-100)
+  has_consented?: boolean;
+  consented_at?: string | null;
 }
 
 export interface PsychophysicsTrial {

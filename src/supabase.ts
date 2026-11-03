@@ -142,6 +142,8 @@ export async function fetchParticipantByEmail(email: string): Promise<{
   email: string;
   created_at?: string;
   auth_user_id?: string;
+  has_consented?: boolean;
+  consented_at?: string | null;
 } | null> {
   const cleanEmail = email.trim().toLowerCase();
   if (!cleanEmail) return null;
@@ -163,7 +165,9 @@ export async function fetchParticipantByEmail(email: string): Promise<{
         gender: row.gender,
         email: row.e_mail || cleanEmail,
         created_at: row.created_at,
-        auth_user_id: row.auth_user_id
+        auth_user_id: row.auth_user_id,
+        has_consented: Boolean(row.has_consented),
+        consented_at: row.consented_at || null
       };
     }
 
@@ -190,7 +194,9 @@ export async function fetchParticipantByEmail(email: string): Promise<{
         gender: parsedGender,
         email: cleanEmail,
         created_at: row.created_at,
-        auth_user_id: row.auth_user_id
+        auth_user_id: row.auth_user_id,
+        has_consented: Boolean(row.has_consented),
+        consented_at: row.consented_at || null
       };
     }
   } catch (err) {
@@ -207,7 +213,9 @@ export async function fetchParticipantByEmail(email: string): Promise<{
       gender: localProf.gender || 'Prefer not to say',
       email: localProf.email,
       created_at: localProf.created_at,
-      auth_user_id: localProf.auth_user_id
+      auth_user_id: localProf.auth_user_id,
+      has_consented: Boolean(localProf.has_consented),
+      consented_at: localProf.consented_at || null
     };
   }
 
@@ -287,7 +295,9 @@ export async function signUpNewInitiate(payload: {
       player_name: payload.player_name,
       age: Number(payload.age),
       gender: payload.gender,
-      e_mail: cleanEmail
+      e_mail: cleanEmail,
+      has_consented: false,
+      consented_at: null
     };
 
     // 2. Insert demographics into participants table in Supabase using the configured e_mail column
@@ -295,18 +305,20 @@ export async function signUpNewInitiate(payload: {
     let attempts = 0;
     while (!insertSuccess && attempts < 25) {
       attempts++;
-      const demoPayload = {
+      const currentDemoPayload = {
         auth_user_id: authUserId,
         subject_id: subjectId,
         player_name: payload.player_name,
         age: Number(payload.age),
         gender: payload.gender,
-        e_mail: cleanEmail
+        e_mail: cleanEmail,
+        has_consented: false,
+        consented_at: null
       };
 
       const { error: insertError } = await supabase
         .from('participants')
-        .insert([demoPayload]);
+        .insert([currentDemoPayload]);
 
       if (!insertError) {
         insertSuccess = true;
@@ -318,7 +330,7 @@ export async function signUpNewInitiate(payload: {
         subjectId = `TEMP-${String(nextNum).padStart(4, '0')}`;
       } else {
         console.warn('[Participants] Supabase client insert note:', insertError.message);
-        await insertParticipantDemographics(demoPayload, session.access_token);
+        await insertParticipantDemographics(currentDemoPayload, session.access_token);
         insertSuccess = true;
       }
     }
@@ -347,7 +359,9 @@ export async function signUpNewInitiate(payload: {
       created_at: new Date().toISOString(),
       rank_title: 'Initiate of the Chronometer',
       total_sessions: 0,
-      room_mastery: {}
+      room_mastery: {},
+      has_consented: false,
+      consented_at: null
     };
 
     saveProfile(profile);
@@ -436,7 +450,9 @@ export async function signInReturningInitiate(email: string): Promise<{
       created_at: isSameSubject ? localProf.created_at : (existingRecord.created_at || new Date().toISOString()),
       rank_title: isSameSubject ? localProf.rank_title : 'Initiate of the Chronometer',
       total_sessions: isSameSubject ? localProf.total_sessions : 0,
-      room_mastery: isSameSubject ? localProf.room_mastery : {}
+      room_mastery: isSameSubject ? localProf.room_mastery : {},
+      has_consented: existingRecord.has_consented !== undefined ? Boolean(existingRecord.has_consented) : (isSameSubject ? Boolean(localProf.has_consented) : false),
+      consented_at: existingRecord.consented_at ?? (isSameSubject ? localProf.consented_at : null)
     };
 
     const updatedProfile = updateDailyStreakOnReturn(profile);
@@ -501,6 +517,72 @@ export async function updateInitiateProfile(payload: {
   } catch (err) {
     return { success: false, error: (err as Error).message || 'Failed to update profile.' };
   }
+}
+
+/**
+ * Records informed participant consent in Supabase and updates local storage.
+ * Enforces has_consented = true and consented_at = NOW() (ISO timestamp).
+ */
+export async function recordParticipantConsent(subjectId: string): Promise<{
+  success: boolean;
+  consented_at: string;
+  error?: string;
+}> {
+  const consentedAt = new Date().toISOString();
+  let updatedInSupabase = false;
+  let lastError = '';
+
+  try {
+    const { error } = await supabase
+      .from('participants')
+      .update({
+        has_consented: true,
+        consented_at: consentedAt
+      })
+      .eq('subject_id', subjectId);
+
+    if (!error) {
+      updatedInSupabase = true;
+    } else {
+      lastError = error.message;
+      console.warn('[Consent] Supabase client update warning:', error.message);
+    }
+  } catch (err) {
+    lastError = (err as Error).message;
+    console.warn('[Consent] Supabase update catch:', err);
+  }
+
+  // Fallback REST PATCH if client-side query did not succeed
+  if (!updatedInSupabase) {
+    try {
+      const res = await fetch(`${SUPABASE_CONFIG.baseUrl}/rest/v1/participants?subject_id=eq.${encodeURIComponent(subjectId)}`, {
+        method: 'PATCH',
+        headers: getSupabaseHeaders(),
+        body: JSON.stringify({
+          has_consented: true,
+          consented_at: consentedAt
+        })
+      });
+      if (res.ok) {
+        updatedInSupabase = true;
+      }
+    } catch (fetchErr) {
+      console.warn('[Consent] REST fallback error:', fetchErr);
+    }
+  }
+
+  // Update profile in local store
+  const currentProfile = getProfile();
+  if (currentProfile) {
+    const updated: ParticipantProfile = {
+      ...currentProfile,
+      has_consented: true,
+      consented_at: consentedAt
+    };
+    saveProfile(updated);
+  }
+
+  return { success: true, consented_at: consentedAt, error: updatedInSupabase ? undefined : lastError };
 }
 
 /**
@@ -770,8 +852,14 @@ CREATE TABLE IF NOT EXISTS public.participants (
     age INT NOT NULL,
     gender TEXT NOT NULL,
     e_mail TEXT,
+    has_consented BOOLEAN DEFAULT false NOT NULL,
+    consented_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+-- Migration for existing installations:
+-- ALTER TABLE public.participants ADD COLUMN IF NOT EXISTS has_consented BOOLEAN DEFAULT false;
+-- ALTER TABLE public.participants ADD COLUMN IF NOT EXISTS consented_at TIMESTAMPTZ;
 
 CREATE INDEX IF NOT EXISTS idx_participants_subject_id ON public.participants(subject_id);
 
@@ -886,6 +974,7 @@ ALTER TABLE public.trials_msit ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Allow participant insert" ON public.participants FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow participant read" ON public.participants FOR SELECT USING (true);
+CREATE POLICY "Allow participant update" ON public.participants FOR UPDATE USING (true) WITH CHECK (true);
 
 CREATE POLICY "Allow insert trials_sj" ON public.trials_sj FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow read trials_sj" ON public.trials_sj FOR SELECT USING (true);

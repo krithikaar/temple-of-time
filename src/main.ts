@@ -10,6 +10,7 @@ import { initAudioContext } from './audio';
 import { renderAuthScreen } from './ui/auth';
 import { renderDashboard } from './ui/dashboard';
 import { renderFeedbackScreen } from './ui/feedback';
+import { renderConsentScreen } from './ui/consentModal';
 import { getCurrentUnlockedStage, completeCurrentNode } from './quest/questState';
 import { GrandParlorTaskRunner } from './tasks/grandParlor';
 import { WeatherSpireTaskRunner } from './tasks/weatherSpire';
@@ -74,14 +75,28 @@ class TempleApp {
     // Increment longitudinal daily streak if visit is on a new calendar day
     this.currentProfile = updateDailyStreakOnReturn(profile);
 
-    // Route to Quest Progression Dashboard
-    this.navigateTo('dashboard');
+    // Route Guard / Auth Check:
+    // If authenticated but has_consented is false, force rendering of the Consent Modal.
+    // If has_consented is true, bypass consent pop-up and route directly to Dashboard.
+    if (!this.currentProfile.has_consented) {
+      this.navigateTo('consent');
+    } else {
+      this.navigateTo('dashboard');
+    }
 
     // Background sync any pending offline trials
     triggerBackgroundSync().catch(() => {});
   }
 
   public navigateTo(screen: ScreenState, extraData?: unknown): void {
+    // Blocking Consent Route Guard:
+    // If a user has an enrolled profile but has not consented, forbid navigation to any screen except 'consent' or 'auth'
+    if (this.currentProfile && !this.currentProfile.has_consented && screen !== 'consent' && screen !== 'auth') {
+      this.currentScreen = 'consent';
+      this.render(extraData);
+      return;
+    }
+
     this.currentScreen = screen;
     this.render(extraData);
   }
@@ -93,6 +108,21 @@ class TempleApp {
       case 'auth':
         renderAuthScreen(this.rootElement, (newProfile) => {
           this.currentProfile = newProfile;
+          if (!newProfile.has_consented) {
+            this.navigateTo('consent');
+          } else {
+            this.navigateTo('dashboard');
+          }
+        });
+        break;
+
+      case 'consent':
+        if (!this.currentProfile) {
+          this.navigateTo('auth');
+          return;
+        }
+        renderConsentScreen(this.rootElement, this.currentProfile, (consentedProfile) => {
+          this.currentProfile = consentedProfile;
           this.navigateTo('dashboard');
         });
         break;
