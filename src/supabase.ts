@@ -99,16 +99,34 @@ async function loginWithPasswordGrant(email: string, password: string): Promise<
 }
 
 /**
- * Calculates the next unique Subject ID starting from TEMP-0001 onwards
- * Queries Supabase participants and local cache to ensure sequential monotonicity.
+ * Calculates the next unique Subject ID starting from TEMP-0001 onwards.
+ * Queries the database RPC sequence or scans existing participants to guarantee monotonic continuity.
  */
 export async function getNextSubjectId(): Promise<string> {
-  let maxNum = 0;
+  // 1. Try atomic database sequence function (immune to RLS)
+  try {
+    const { data: rpcData, error: rpcError } = await supabase.rpc('get_next_subject_id');
+    if (!rpcError && typeof rpcData === 'string' && /^TEMP-\d+$/i.test(rpcData.trim())) {
+      const assignedId = rpcData.trim();
+      const numMatch = assignedId.match(/^TEMP-(\d+)$/i);
+      if (numMatch) {
+        const num = parseInt(numMatch[1], 10);
+        const curr = parseInt(localStorage.getItem('TEMPLE_MAX_TEMP_NUM') || '0', 10);
+        localStorage.setItem('TEMPLE_MAX_TEMP_NUM', String(Math.max(curr, num)));
+      }
+      return assignedId;
+    }
+  } catch (err) {
+    console.warn('[Supabase] RPC get_next_subject_id notice:', err);
+  }
 
+  // 2. Direct table query scanning all registered subject_ids
+  let maxNum = 0;
   try {
     const { data, error } = await supabase
       .from('participants')
-      .select('subject_id');
+      .select('subject_id')
+      .order('created_at', { ascending: false });
 
     if (!error && Array.isArray(data)) {
       for (const row of data) {
@@ -120,10 +138,10 @@ export async function getNextSubjectId(): Promise<string> {
       }
     }
   } catch (err) {
-    console.warn('[Supabase] Deferred getNextSubjectId lookup:', err);
+    console.warn('[Supabase] Deferred getNextSubjectId table lookup:', err);
   }
 
-  // Also check local storage highest sequence
+  // 3. Fallback: check highest sequence recorded in local storage
   const localStoredNum = parseInt(localStorage.getItem('TEMPLE_MAX_TEMP_NUM') || '0', 10);
   if (localStoredNum > maxNum) maxNum = localStoredNum;
 
@@ -132,7 +150,8 @@ export async function getNextSubjectId(): Promise<string> {
 }
 
 /**
- * Searches Supabase participants by email
+ * Searches Supabase participants by email across devices.
+ * Uses SECURITY DEFINER RPC first (to bypass RLS restriction), then falls back to direct queries.
  */
 export async function fetchParticipantByEmail(email: string): Promise<{
   subject_id: string;
@@ -148,8 +167,31 @@ export async function fetchParticipantByEmail(email: string): Promise<{
   const cleanEmail = email.trim().toLowerCase();
   if (!cleanEmail) return null;
 
+  // 1. Try dedicated lookup RPC function (SECURITY DEFINER, completely immune to RLS)
   try {
-    // 1. Direct query on the newly configured e_mail column
+    const { data: rpcRows, error: rpcErr } = await supabase
+      .rpc('lookup_participant_by_email', { lookup_email: cleanEmail });
+
+    if (!rpcErr && Array.isArray(rpcRows) && rpcRows.length > 0) {
+      const row = rpcRows[0];
+      return {
+        subject_id: row.subject_id,
+        player_name: row.player_name,
+        age: row.age,
+        gender: row.gender,
+        email: row.e_mail || cleanEmail,
+        created_at: row.created_at,
+        auth_user_id: row.auth_user_id,
+        has_consented: Boolean(row.has_consented),
+        consented_at: row.consented_at || null
+      };
+    }
+  } catch (rpcErr) {
+    console.warn('[Supabase] RPC lookup_participant_by_email notice:', rpcErr);
+  }
+
+  // 2. Direct query on e_mail column with case-insensitivity
+  try {
     const { data, error } = await supabase
       .from('participants')
       .select('*')
@@ -170,8 +212,12 @@ export async function fetchParticipantByEmail(email: string): Promise<{
         consented_at: row.consented_at || null
       };
     }
+  } catch (err) {
+    console.warn('[Supabase] Direct e_mail query notice:', err);
+  }
 
-    // 2. Fallback query checking legacy gender JSON formatting if any
+  // 3. Fallback query checking legacy gender JSON formatting if any
+  try {
     const { data: legacyData } = await supabase
       .from('participants')
       .select('*')
@@ -200,10 +246,10 @@ export async function fetchParticipantByEmail(email: string): Promise<{
       };
     }
   } catch (err) {
-    console.warn('[Supabase] Search participant by e_mail notice:', err);
+    console.warn('[Supabase] Legacy format query notice:', err);
   }
 
-  // 3. Fallback: check locally cached profile if on same device/browser
+  // 4. Fallback: check locally cached profile if on same device/browser
   const localProf = getProfile();
   if (localProf && localProf.email && localProf.email.toLowerCase() === cleanEmail) {
     return {
@@ -240,20 +286,17 @@ export async function signUpNewInitiate(payload: {
   }
 
   try {
-    // Check if email is already registered
+    // Check if email is already registered across any device
     const existing = await fetchParticipantByEmail(cleanEmail);
     if (existing) {
       return {
         success: false,
-        error: `This email is already registered with Subject ID "${existing.subject_id}". Please switch to "Returning Initiate" to sign in.`
+        error: `Email "${cleanEmail}" is already registered with Subject ID "${existing.subject_id}". Please switch to "Returning Initiate" to sign in.`
       };
     }
 
     // Determine unique Subject ID starting from TEMP-0001 onwards
-    let subjectId = payload.assigned_subject_id?.trim();
-    if (!subjectId || !/^TEMP-\d+$/i.test(subjectId)) {
-      subjectId = await getNextSubjectId();
-    }
+    let subjectId = await getNextSubjectId();
 
     // 1. Authenticate anonymously using Supabase client
     const { data: authData, error: authError } = await supabase.auth.signInAnonymously({
@@ -288,19 +331,7 @@ export async function signUpNewInitiate(payload: {
     // Persist session locally and synchronize into Supabase JS client
     saveAuthSession(session, subjectId);
 
-    // 2. Insert demographics into participants table in Supabase using the configured e_mail column
-    const demoPayload = {
-      auth_user_id: authUserId,
-      subject_id: subjectId,
-      player_name: payload.player_name,
-      age: Number(payload.age),
-      gender: payload.gender,
-      e_mail: cleanEmail,
-      has_consented: false,
-      consented_at: null
-    };
-
-    // 2. Insert demographics into participants table in Supabase using the configured e_mail column
+    // 2. Insert demographics into participants table in Supabase
     let insertSuccess = false;
     let attempts = 0;
     while (!insertSuccess && attempts < 25) {
@@ -323,10 +354,20 @@ export async function signUpNewInitiate(payload: {
       if (!insertError) {
         insertSuccess = true;
       } else if (insertError.code === '23505' || insertError.message?.includes('duplicate key') || insertError.message?.includes('unique constraint')) {
-        // ID already exists, increment to next sequential number and retry
+        const fullErr = ((insertError.message || '') + ' ' + (insertError.details || '')).toLowerCase();
+        if (fullErr.includes('e_mail') || fullErr.includes('email') || fullErr.includes('idx_participants_email')) {
+          return {
+            success: false,
+            error: `Email "${cleanEmail}" is already registered. Please switch to "Returning Initiate" to sign in.`
+          };
+        }
+
+        // Subject ID collision: increment to next available sequential number and retry
+        const freshNext = await getNextSubjectId();
+        const freshNum = parseInt(freshNext.replace(/^TEMP-/i, ''), 10) || 0;
         const seqMatch: RegExpMatchArray | null = subjectId.match(/^TEMP-(\d+)$/i);
         const currNum: number = seqMatch && seqMatch[1] ? parseInt(seqMatch[1], 10) : attempts;
-        const nextNum: number = currNum + 1;
+        const nextNum: number = Math.max(freshNum, currNum + 1);
         subjectId = `TEMP-${String(nextNum).padStart(4, '0')}`;
       } else {
         console.warn('[Participants] Supabase client insert note:', insertError.message);
@@ -399,6 +440,14 @@ export async function signInReturningInitiate(email: string): Promise<{
     }
 
     const subjectId = existingRecord.subject_id;
+
+    // Update highest sequence tracker so this device does not lag behind
+    const match = subjectId.match(/^TEMP-(\d+)$/i);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      const curr = parseInt(localStorage.getItem('TEMPLE_MAX_TEMP_NUM') || '0', 10);
+      localStorage.setItem('TEMPLE_MAX_TEMP_NUM', String(Math.max(curr, num)));
+    }
 
     // 2. Sign in anonymously to acquire an active Supabase JWT session
     const { data: authData, error: authError } = await supabase.auth.signInAnonymously({
@@ -972,9 +1021,46 @@ ALTER TABLE public.trials_tp ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.trials_dd ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.trials_msit ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow participant insert" ON public.participants FOR INSERT WITH CHECK (true);
-CREATE POLICY "Allow participant read" ON public.participants FOR SELECT USING (true);
-CREATE POLICY "Allow participant update" ON public.participants FOR UPDATE USING (true) WITH CHECK (true);
+-- Allow cross-device read/insert/update for both anon and authenticated users
+DROP POLICY IF EXISTS "Allow participant insert" ON public.participants;
+DROP POLICY IF EXISTS "Allow participant read" ON public.participants;
+DROP POLICY IF EXISTS "Allow participant update" ON public.participants;
+
+CREATE POLICY "Allow participant insert" ON public.participants FOR INSERT TO anon, authenticated WITH CHECK (true);
+CREATE POLICY "Allow participant read" ON public.participants FOR SELECT TO anon, authenticated USING (true);
+CREATE POLICY "Allow participant update" ON public.participants FOR UPDATE TO anon, authenticated USING (true) WITH CHECK (true);
+
+-- Automatic Deduplication of Repeated Email Rows (keeps earliest record)
+WITH duplicates AS (
+    SELECT id, ROW_NUMBER() OVER (PARTITION BY LOWER(TRIM(e_mail)) ORDER BY created_at ASC, id ASC) AS rn
+    FROM public.participants WHERE e_mail IS NOT NULL AND TRIM(e_mail) <> ''
+)
+DELETE FROM public.participants WHERE id IN (SELECT id FROM duplicates WHERE rn > 1);
+
+-- Unique index on email to prevent duplicate accounts
+DROP INDEX IF EXISTS public.idx_participants_email_unique;
+CREATE UNIQUE INDEX idx_participants_email_unique ON public.participants (LOWER(TRIM(e_mail))) WHERE e_mail IS NOT NULL AND TRIM(e_mail) <> '';
+
+-- Sequence generation function (bypasses RLS)
+CREATE OR REPLACE FUNCTION public.get_next_subject_id()
+RETURNS TEXT LANGUAGE plpgsql SECURITY DEFINER AS $$
+DECLARE next_val INT;
+BEGIN
+    SELECT COALESCE(MAX(NULLIF(regexp_replace(subject_id, '^TEMP-0*', '', 'i'), '')::INT), 0) + 1 INTO next_val
+    FROM public.participants WHERE subject_id ~* '^TEMP-\d+$';
+    RETURN 'TEMP-' || lpad(next_val::TEXT, 4, '0');
+END;
+$$;
+GRANT EXECUTE ON FUNCTION public.get_next_subject_id() TO anon, authenticated, service_role;
+
+-- Account recovery function (bypasses RLS)
+CREATE OR REPLACE FUNCTION public.lookup_participant_by_email(lookup_email TEXT)
+RETURNS SETOF public.participants LANGUAGE sql SECURITY DEFINER AS $$
+    SELECT * FROM public.participants
+    WHERE LOWER(TRIM(e_mail)) = LOWER(TRIM(lookup_email))
+    ORDER BY created_at ASC LIMIT 1;
+$$;
+GRANT EXECUTE ON FUNCTION public.lookup_participant_by_email(TEXT) TO anon, authenticated, service_role;
 
 CREATE POLICY "Allow insert trials_sj" ON public.trials_sj FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow read trials_sj" ON public.trials_sj FOR SELECT USING (true);

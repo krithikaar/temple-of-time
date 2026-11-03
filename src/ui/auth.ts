@@ -24,7 +24,6 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
   let isLoadingNextId = false;
 
   async function fetchAssignedId(): Promise<void> {
-    if (assignedSubjectIdCache) return;
     isLoadingNextId = true;
     try {
       assignedSubjectIdCache = await getNextSubjectId();
@@ -122,7 +121,7 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
 
     attachListeners();
 
-    if (activeMode === 'new' && !assignedSubjectIdCache) {
+    if (activeMode === 'new') {
       fetchAssignedId();
     }
   }
@@ -390,10 +389,32 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
     `;
   }
 
-  function showError(message: string): void {
+  function showError(message: string, prefillEmail?: string): void {
     const errorBanner = document.getElementById('auth-error-banner');
     if (errorBanner) {
-      errorBanner.textContent = message;
+      if (message.toLowerCase().includes('already registered')) {
+        errorBanner.innerHTML = `
+          <div class="space-y-2.5">
+            <p>${message}</p>
+            <button type="button" 
+                    id="btn-quick-switch-returning" 
+                    class="w-full py-2 px-3 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 rounded-lg text-xs font-mono font-bold tracking-wider flex items-center justify-center space-x-1.5 transition-colors cursor-pointer">
+              <span>Switch to Returning Initiate & Recover ID →</span>
+            </button>
+          </div>
+        `;
+        document.getElementById('btn-quick-switch-returning')?.addEventListener('click', () => {
+          playTactileClick();
+          activeMode = 'returning';
+          render();
+          if (prefillEmail) {
+            const input = document.getElementById('input-return-email') as HTMLInputElement | null;
+            if (input) input.value = prefillEmail;
+          }
+        });
+      } else {
+        errorBanner.textContent = message;
+      }
       errorBanner.classList.remove('hidden');
     }
   }
@@ -413,6 +434,7 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
       if (isSubmitting) return;
       playTactileClick();
       activeMode = 'new';
+      assignedSubjectIdCache = '';
       render();
     });
 
@@ -429,6 +451,7 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
       if (isSubmitting) return;
       playTactileClick();
       activeMode = 'new';
+      assignedSubjectIdCache = '';
       render();
     });
 
@@ -492,13 +515,13 @@ export function renderAuthScreen(container: HTMLElement, onComplete: (profile: P
           if (result.success && result.profile) {
             onComplete(result.profile);
           } else {
-            showError(result.error || 'Failed to enroll initiate credentials.');
+            showError(result.error || 'Failed to enroll initiate credentials.', email);
             isSubmitting = false;
             if (submitBtn) submitBtn.disabled = false;
             if (submitLabel) submitLabel.textContent = 'Inscribe Identity & Enter';
           }
         } catch (err) {
-          showError((err as Error).message || 'An unexpected error occurred during signup.');
+          showError((err as Error).message || 'An unexpected error occurred during signup.', email);
           isSubmitting = false;
           if (submitBtn) submitBtn.disabled = false;
           if (submitLabel) submitLabel.textContent = 'Inscribe Identity & Enter';
